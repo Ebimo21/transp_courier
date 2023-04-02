@@ -27,7 +27,7 @@ const ChooseUs = (props: Props) => {
     ]
   return (
     <div className='flex lg:justify-center flex-wrap'>
-        <div className='p-5 basis-full  lg:basis-8/12 flex flex-wrap'>
+        <div className='p-6 pl-10 basis-full  lg:basis-8/12 flex flex-wrap'>
             <div className='lg:basis-5/12'>
                 <h3 className='font-bold text-4xl text-blue'>Choose Us</h3>
                 <p className='text-blue font-semibold '>For all your Freight Services</p>
@@ -36,7 +36,7 @@ const ChooseUs = (props: Props) => {
                 and dedication can make for your business.</p>
         </div>
         
-        <div className='flex  flex-wrap gap-3 lg:p-2 justify-center items-center basis-8/12'>
+        <div className='flex pl-5  flex-wrap gap-3 lg:p-2 justify-center items-center basis-8/12'>
             {Cards.map((item, index)=>{
                 return(
                     <div 

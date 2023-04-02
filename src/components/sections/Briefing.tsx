@@ -23,6 +23,7 @@ function Briefing() {
     <div>
         <div className='p-5'>
             <div className='flex flex-wrap gap-3 justify-center items-center'>
+               <div className='flex flex-wrap justify-center basis-9/12 gap-10'>
                 {Images.map((item, index)=>{
                     return(
                         <div 
@@ -36,6 +37,7 @@ function Briefing() {
                         </div>
                     )
                 })}
+                </div>
 
                 <div className='basis-11/12 lg:basis-8/12 text-justify'>
                 <p className='mt-4'>

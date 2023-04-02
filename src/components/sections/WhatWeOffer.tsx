@@ -4,6 +4,25 @@ import React from 'react'
 type Props = {}
 
 const WhatWeOffer = (props: Props) => {
+
+    const cards = [
+        {
+            lead: "+304,521",
+            sub: "Parcels Shipped Safely"
+        },
+        {
+            lead: "+120,000",
+            sub: "Cities Served Worldwide"
+        },
+        {
+            lead: "+5102",
+            sub: "Satisfied Clients"
+        },
+        {
+            lead: "+1200",
+            sub: "Companies we Help"
+        },
+    ]
   return (
     <div className='p-5 '>
         <h2 className='font-medium text-blue mb-2 mt-4 text-3xl'>What we Offer</h2>
@@ -31,6 +50,17 @@ const WhatWeOffer = (props: Props) => {
             </div>
 
             <div className='flex flex-wrap lg:flex-nowrap gap-20 md:gap-10 mt-10 md:-translate-y-10 text-2xl text-center'>
+            {cards.map((item, index)=>{
+              return (
+                    <div key={index} className='basis-full md:basis-3/12 text-white'>
+                        <h3 className='text-6xl font-bold text-yellow'>{item.lead}</h3>
+                        <p className='f font-bold mt-2 w-60 m-auto'>{item.sub}</p>
+                    </div>
+              )  
+            })}
+            </div>
+
+            {/* <div className='flex flex-wrap lg:flex-nowrap gap-20 md:gap-10 mt-10 md:-translate-y-10 text-2xl text-center'>
                 <div className='basis-full md:basis-3/12 text-white'>
                     <h3 className='text-6xl font-bold text-yellow'>+304,521</h3>
                     <p className='f font-bold mt-2 w-60 m-auto'>Parcels Shipped Safely</p>
@@ -48,7 +78,7 @@ const WhatWeOffer = (props: Props) => {
                     <p className='f font-bold mt-2 w-60 m-auto'>Parcels Shipped Safely</p>
                 </div>
 
-            </div>
+            </div> */}
 
 
             
