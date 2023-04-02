@@ -4,7 +4,7 @@ type Props = {}
 
 function SectionThree({}: Props) {
   return (
-    <div className='px-5 '>
+    <div className='px-5 mt-4 '>
       <div className=' flex flex-wrap gap-20 justify-center items-center'>
         <div className='md:basis-4/12 '>
             <span className='bg-yellow p-3'>History</span>

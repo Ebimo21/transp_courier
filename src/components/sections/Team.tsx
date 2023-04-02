@@ -67,7 +67,7 @@ const Team = (props: Props) => {
     <div>
         <div className='p-5 py-10'>
             <h3 className='text-lightBlue text-2xl font-bold text-left'>Meet Our Team</h3>
-            <p className='text-lightBlue font-thin text-left w-4/12 '>Welcome to our transportation services agency. We are the best at our transportation services ever.</p>
+            <p className='text-lightBlue font-thin text-left lg:w-4/12 '>Welcome to our transportation services agency. We are the best at our transportation services ever.</p>
             <div className='flex flex-wrap justify-center gap-5 mt-5'>
                 {team.map((item, index)=>{
                     return (

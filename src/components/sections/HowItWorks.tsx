@@ -9,7 +9,7 @@ function HowItWorks({}: Props) {
         <div className='text-center p-5'>
             <span className='text-xs text-bold'>Logisitics & Transportation</span>
             <h3 className='text-3xl font-bold text-lightBlue'>How it Works</h3>
-            <p className='text-xs font-light w-[500px] mt-2 m-auto'>You choose the cities where you&apos;d like to deliver. All deliveries are 
+            <p className='text-xs font-light md:w-[500px] mt-2 m-auto'>You choose the cities where you&apos;d like to deliver. All deliveries are 
                 within a specific service area and delivery services vary by location. 
                 Whatever the mode or requirement, we will find and book the ideal expedited
                 shipping solution to ensure a timely delivery
