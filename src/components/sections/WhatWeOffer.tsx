@@ -5,12 +5,12 @@ type Props = {}
 
 const WhatWeOffer = (props: Props) => {
   return (
-    <div className='p-5'>
+    <div className='p-5 '>
         <h2 className='font-medium text-blue mb-2 mt-4 text-3xl'>What we Offer</h2>
         <p className='font-light text-sm'>We find delight in  providing comprehensive and professional freight
               forwarding services, for easing your supply chain needs.</p>
 
-        <div className='bg-blue h-[2250px] md:h-[550px] mt-10 md:mt-32 p-2 pt-10 '>
+        <div className='bg-blue rounded-[30px] h-[2300px] md:h-[550px] mt-10 md:mt-32 p-2 pt-10 '>
             <div className='flex flex-wrap justify-center mx-5 md:-translate-y-32 gap-8 '>
                 {items.map((item, index)=>{
                     return(
@@ -30,7 +30,7 @@ const WhatWeOffer = (props: Props) => {
 
             </div>
 
-            <div className='flex flex-wrap lg:flex-nowrap gap-20 md:gap-10 mt-10 text-2xl text-center'>
+            <div className='flex flex-wrap lg:flex-nowrap gap-20 md:gap-10 mt-10 md:-translate-y-10 text-2xl text-center'>
                 <div className='basis-full md:basis-3/12 text-white'>
                     <h3 className='text-6xl font-bold text-yellow'>+304,521</h3>
                     <p className='f font-bold mt-2 w-60 m-auto'>Parcels Shipped Safely</p>

@@ -1,11 +1,13 @@
+import { Montserrat } from 'next/font/google'
 import React, { ReactNode } from 'react'
 
+const montserrate = Montserrat({subsets: ["latin"]})
 
 const Header = () => {
   return (
     <div 
-        className='flex justify-between items-center
-                   py-4 bg-white'>
+        className={`${montserrate.className}flex justify-between items-center
+                   py-4 bg-white`}>
         <span>Transp</span>
 
         <menu className='hidden'>

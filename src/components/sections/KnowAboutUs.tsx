@@ -5,7 +5,7 @@ type Props = {}
 
 const KnowAboutUs = (props: Props) => {
   return (
-    <div>
+    <div className='py-14'>
         <div className='flex items-center justify-center flex-wrap gap-10 lg:gap-5 p-5'>
             <img 
                 className='basis-full lg:basis-3/12'

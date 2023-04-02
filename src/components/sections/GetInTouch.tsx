@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { HTMLAttributes } from 'react'
 import {BsArrowRight} from 'react-icons/bs'
 
-type Props = {}
+type Props = {
+    ImageId: string
+}
 
-const GetInTouch = (props: Props) => {
+const GetInTouch = ({ImageId}: Props) => {
   return (
     <>
         <div className=' bg-lightYellow'>
             <div className='flex flex-wrap gap-5'>
                 <div className='basis-full lg:basis-5/12 mx-6 lg:ml-32 my-10 '>
                     <span className='bg-yellow px-4 py-1'>Get In Touch</span>
-                    <h3 className='text-lightBlue text-xl font-bold  mt-4'>Proud to Deliver <br />Excellence Every Time</h3>
+                    <h3 className='text-lightBlue text-2xl font-bold  mt-4'>Proud to Deliver <br />Excellence Every Time</h3>
                     <p className='text-light mt-4 text-sm text-lightBlue'>We aim to contribute well to your company by brewing eǖ ective supply 
                         chain management strategies. Our professional resources is dedicated 
                         to ensure that there is constant and timely delivery of all consignments 
@@ -41,7 +43,7 @@ const GetInTouch = (props: Props) => {
 
                 </div>
 
-                <div id='transport' className='h grow basis-full lg:basis-5/12'></div>
+                <div id={ImageId} className='h grow basis-full lg:basis-5/12'></div>
             </div>
         </div>
     </>
