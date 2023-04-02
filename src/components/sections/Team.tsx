@@ -13,8 +13,8 @@ const Team = (props: Props) => {
             twitter: URL,
             instagram: URL,
         },
-        img: String,
-        alt: String,
+        img: string,
+        alt: string,
     } 
     const team: Team[]=  [
         {
@@ -25,8 +25,8 @@ const Team = (props: Props) => {
                 twitter: new URL("http://localhost:3000/"),
                 instagram: new URL("http://localhost:3000/"),
             },
-            img: "",
-            alt: "",
+            img: "./images/Partners.jpg",
+            alt: "team",
         },
         {
             name: "Devon Lane",
@@ -36,8 +36,8 @@ const Team = (props: Props) => {
                 twitter: new URL("http://localhost:3000/"),
                 instagram: new URL("http://localhost:3000/"),
             },
-            img: "",
-            alt: "",
+            img: "./images/Partners.jpg",
+            alt: "team",
         },
         {
             name: "Devon Lane",
@@ -47,8 +47,8 @@ const Team = (props: Props) => {
                 twitter: new URL("http://localhost:3000/"),
                 instagram: new URL("http://localhost:3000/"),
             },
-            img: "",
-            alt: "",
+            img: "./images/Partners.jpg",
+            alt: "team",
         },
         {
             name: "Devon Lane",
@@ -58,21 +58,21 @@ const Team = (props: Props) => {
                 twitter: new URL("http://localhost:3000/"),
                 instagram: new URL("http://localhost:3000/"),
             },
-            img: "",
-            alt: "",
+            img: "./images/Partners.jpg",
+            alt: "team",
         },
         
     ]
   return (
     <div>
         <div className='p-5 py-10'>
-            <h3 className='text-lightBlue text-2xl font-bold text-center'>Meet Our Team</h3>
-            <p className='text-lightBlue font-thin text-center w-8/12 m-auto '>Welcome to our transportation services agency. We are the best at our transportation services ever.</p>
+            <h3 className='text-lightBlue text-2xl font-bold text-left'>Meet Our Team</h3>
+            <p className='text-lightBlue font-thin text-left w-4/12 '>Welcome to our transportation services agency. We are the best at our transportation services ever.</p>
             <div className='flex flex-wrap justify-center gap-5 mt-5'>
                 {team.map((item, index)=>{
                     return (
                         <div className='max-w-[288px] basis-8/12' key={index}>
-                            <img src="./images/partners.jpg" alt='' />
+                            <img src={item.img} alt={item.alt} />
                             <div className='bg-white -translate-y-10 w-5/6 justify-between rounded-sm flex items-end p-3  m-auto'>
                                 <div>
                                     <h4 className='text-blue font-bold'>{item.name}</h4>

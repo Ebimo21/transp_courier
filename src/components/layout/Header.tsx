@@ -62,6 +62,7 @@ const Header = () => {
               <li><Link href="/about" className="block text-sm px-2 py-4 hover:bg-lightBlue hover:text-white text-blue hover:text-lightBlue transition duration-300 border-blue font-semibold ">About Us</Link></li>
               <li><Link href="/services" className="block text-sm px-2 py-4 hover:bg-lightBlue hover:text-white text-blue  hover:text-lightBlue transition duration-300 border-blue font-semibold ">Services</Link></li>
               <li><Link href="#" className="block text-sm px-2 py-4 hover:bg-lightBlue hover:text-white text-blue  hover:text-lightBlue transition duration-300 border-blue font-semibold ">Contact</Link></li>
+              <li><Link href="/track" className="inline-block py-2 px-2 font-medium text-blue rounded bg-yellow transition duration-300">Track Parcel</Link></li>
 					{/* <li className="active"><a href="index.html" className="block text-sm px-2 py-4 text-white bg-blue font-semibold">Home</a></li>
 					<li><a href="#services" className="block text-sm px-2 py-4 hover:bg-blue transition duration-300">Services</a></li>
 					<li><a href="#about" className="block text-sm px-2 py-4 hover:bg-blue transition duration-300">About</a></li>

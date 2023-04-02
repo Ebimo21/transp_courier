@@ -18,10 +18,10 @@ const about = (props: Props) => {
             className=' w-screen text-white p-6' >
 
 
-            <div className='flex flex-col items-center justify-center h-[60vh] '>
+            <div className='flex flex-col items-center justify-center h-[20vh] lg:h-[60vh] '>
                     <span className='text-yellow font-bold'>Who We Are</span>
                     <h1 className=' text-6xl font-bold mb-5'>About Us</h1>
-                    < p className='w-4/12 text-center'>We have been pioneering the industry in Europe for over a decade and delivering
+                    < p className='lg:w-4/12 text-center'>We have been pioneering the industry in Europe for over a decade and delivering
                     value products within given timeframe, every single time.
                     </p>
             </div>

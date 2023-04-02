@@ -53,7 +53,7 @@ const WhatWeOffer = (props: Props) => {
             {cards.map((item, index)=>{
               return (
                     <div key={index} className='basis-full md:basis-3/12 text-white'>
-                        <h3 className='text-6xl font-bold text-yellow'>{item.lead}</h3>
+                        <h3 className='text-5xl font-bold text-yellow'>{item.lead}</h3>
                         <p className='f font-bold mt-2 w-60 m-auto'>{item.sub}</p>
                     </div>
               )  
@@ -93,25 +93,25 @@ const items = [
     lead: "Wharehousing",
     sub: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
     icon: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
-    image: "./images/warehousing.svg"
+    image: "./images/Warehousing.svg"
 },
     {
-    lead: "Wharehousing",
+    lead: "Air Freight",
     sub: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
     icon: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
-    image: "./images/warehousing.svg"
+    image: "./images/Air_freight.svg"
 },
     {
-    lead: "Wharehousing",
+    lead: "Ocean Freight",
     sub: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
     icon: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
-    image: "./images/warehousing.svg"
+    image: "./images/Ocean_freight.svg"
 },
     {
-    lead: "Wharehousing",
+    lead: "Road Freight",
     sub: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
     icon: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
-    image: "./images/warehousing.svg"
+    image: "./images/Road_freight.svg"
 },
 ]
 

@@ -10,29 +10,29 @@ const WhyChooseUs = (props: Props) => {
         <div className='flex flex-wrap gap-10 lg:gap-2 px-5 lg:px-10 py-10 justify-center items-center' >
             <div className='basis-full grow flex flex-wrap lg:basis-5/12 text-center gap-5 justify-center'>
                 <div className='basis-10/12 rounded-sm hover:bg-lightBlue  sm:max-w-[310px] lg:max-w-[240px] leading-3 py-10 px-5 lg:p-5 sm:p-5  shadow-card--features'>
-                    <img width={80} className='block m-auto' src='./images/deliveries.png'  />
+                    <img width={80} className='block m-auto' src='./images/Shipping.png'  />
                     <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Shipping Options</h4>
                     <span className='font-normal lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
                     </span>
                 </div>
                 <div className='basis-10/12 lg:translate-y-8 rounded-sm hover:bg-lightBlue  sm:max-w-[310px] lg:max-w-[240px] leading-3 py-10 px-5 lg:p-5 sm:p-5  shadow-card--features'>
-                    <img width={80} className='block m-auto' src='./images/deliveries.png'  />
-                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Shipping Options</h4>
+                    <img width={80} className='block m-auto' src='./images/Deliveries.png'  />
+                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Timely Deliveries</h4>
                     <span className='font-normal lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
                     </span>
                 </div>
                 <div className='basis-10/12 rounded-sm hover:bg-lightBlue  sm:max-w-[310px] lg:max-w-[240px] leading-3 py-10 px-5 lg:p-5 sm:p-5  shadow-card--features'>
-                    <img width={80} className='block m-auto' src='./images/deliveries.png'  />
-                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Shipping Options</h4>
+                    <img width={80} className='block m-auto' src='./images/Customer_Service.png'  />
+                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Customer Services</h4>
                     <span className='font-normal lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
                     </span>
                 </div>
                 <div className='basis-10/12 lg:translate-y-8 rounded-sm hover:bg-lightBlue  sm:max-w-[310px] lg:max-w-[240px] leading-3 py-10 px-5 lg:p-5 sm:p-5  shadow-card--features'>
-                    <img width={80} className='block m-auto' src='./images/deliveries.png'  />
-                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Shipping Options</h4>
+                    <img width={80} className='block m-auto' src='./images/Tracking_System.png'  />
+                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Tracking Systems</h4>
                     <span className='font-normal lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
                     </span>
