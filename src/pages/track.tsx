@@ -7,7 +7,9 @@ type Props = {}
 const track = (props: Props) => {
   return (
     <Layout>
+      <main className={`max-w-[1250px] m-auto`}>
         <Track/>
+      </main>
     </Layout>
   )
 }

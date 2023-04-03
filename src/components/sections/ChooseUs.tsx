@@ -36,7 +36,7 @@ const ChooseUs = (props: Props) => {
                 and dedication can make for your business.</p>
         </div>
         
-        <div className='flex pl-5  flex-wrap gap-3 lg:p-2 justify-center items-center basis-8/12'>
+        <div className='flex pl-5  flex-wrap gap-3 lg:p-2 items-center basis-8/12'>
             {Cards.map((item, index)=>{
                 return(
                     <div 

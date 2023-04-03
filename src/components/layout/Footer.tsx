@@ -29,7 +29,7 @@ const Footer = (props: Props) => {
                   <FiYoutube/>
                 </div>
             </div>
-            <div className='flex font-thin text-lg gap-10 lg:gap-20 flex-wrap justify-between'>
+            <div className='flex font-thin text-base gap-10 lg:gap-20 flex-wrap justify-between'>
               <div className='flex-col gap-1 flex flex-wrap'>
                 <h3 className='text-yellow text-xl mb-2 font-semibold'>Company</h3>
                 <p><a href='#'>Mission & Vision</a></p>

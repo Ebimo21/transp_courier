@@ -7,7 +7,7 @@ function SectionThree({}: Props) {
     <div className='px-5 mt-4 '>
       <div className=' flex flex-wrap gap-20 justify-center items-center'>
         <div className='md:basis-4/12 '>
-            <span className='bg-yellow p-3'>History</span>
+            <span className='bg-yellow font-semibold p-1 w-20 text-center inline-block'>History</span>
           <h3 className='text-2xl text-blue font-bold my-4'>Globally Conected by Large Network.</h3>
           <p className='font-thin'>Logistic Transp was founded in 2005 by a group of transportation 
             professionals who saw an opportunity to provide a better level of service to businesses. 

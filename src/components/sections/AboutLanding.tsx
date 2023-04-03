@@ -2,10 +2,10 @@ import React from 'react'
 
 function AboutLanding() {
   return (
-    <div className=' bg-lightYellow'>
-            <div className='flex flex-wrap gap-5 items-center'>
+    <div className=' bg-[#e7e5e5]'>
+            <div className='flex flex-wrap gap-5 items-center '>
                 <div className='basis-full lg:basis-4/12 mx-6 lg:ml-32 my-10 '>
-                    <span className='bg-yellow px-4 py-1'>Services</span>
+                    <span className='font-bold '>Our Services</span>
                     <h3 className='text-lightBlue text-4xl font-bold  mt-4'>A Company You can Trust</h3>
                     <p className='mt-4 font-light text-blue  '>Welcome to our freight company that specialises in air, 
                         ocean, and road tranportation services, as well as warehousing solutions for businesses of all sizes. 
