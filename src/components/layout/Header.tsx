@@ -38,7 +38,7 @@ const Header = () => {
 
 					<div className="hidden md:flex items-center space-x-3 ">
 						<Link href="#" className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue hover:text-white transition duration-300">English </Link>
-						<Link href="/track" className="py-2 px-2 font-medium text-blue rounded bg-yellow transition duration-300">Track Parcel</Link>
+						<Link href="/track" className="py-2 px-2 w-40 text-center font-medium text-blue rounded bg-yellow transition duration-300">Track Parcel</Link>
 					</div>
 					<div className="md:hidden flex items-center">
 						<button

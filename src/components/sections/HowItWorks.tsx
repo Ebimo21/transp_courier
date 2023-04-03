@@ -17,7 +17,7 @@ function HowItWorks({}: Props) {
 
             <div className='mt-5 flex gap-10 text-left flex-wrap justify-center'>
                 <div className='basis-10/12 lg:basis-3/12 p-6 border border-solid border-slate-900 rounded-2xl'>
-                    <span className='bg-yellow p-4 rounded-full inline-block '> <img width={40} src='./images/payment.svg' alt='icon'/></span>
+                    <span className='bg-yellow p-4 rounded-full inline-block '> <img width={40} src='./images/Payment.svg' alt='icon'/></span>
                     <h3 className='font-bold text-lightBlue my-3'>Make an Order</h3>
                     <p className='text-sm'>To make an order for shipment of parcel, you can speak with any of our 
                         agents through the following meduim
@@ -31,7 +31,7 @@ function HowItWorks({}: Props) {
 
                 </div>
                 <div className='basis-10/12 lg:basis-3/12 p-6 border border-solid border-slate-900 rounded-2xl'>
-                    <span className='bg-yellow p-4 rounded-full inline-block '> <img width={40} src='./images/payment.svg' alt='icon'/></span>
+                    <span className='bg-yellow p-4 rounded-full inline-block '> <img width={40} src='./images/Payment 1.svg' alt='icon'/></span>
                     <h3 className='font-bold text-lightBlue my-3'>Make Payment</h3>
                     <p className='text-sm'>Our shipping prices are vyer friendly and affordable. We currently accept payment through the following means:
                     </p>
@@ -43,7 +43,7 @@ function HowItWorks({}: Props) {
 
                 </div>
                 <div className='basis-10/12 lg:basis-3/12 p-6 border border-solid border-slate-900 rounded-2xl'>
-                    <span className='bg-yellow p-4 rounded-full inline-block '> <img width={40} src='./images/payment.svg' alt='icon'/></span>
+                    <span className='bg-yellow p-4 rounded-full inline-block '> <img width={40} src='./images/Track.svg' alt='icon'/></span>
                     <h3 className='font-bold text-lightBlue my-3'>Track Parcel</h3>
                     <p className='text-sm'>Once your parcel is shipped, a tracking code will be generated for you to monitor your parcel anytime. You can know the exact location your parcel is at any point in time.
                     </p>
