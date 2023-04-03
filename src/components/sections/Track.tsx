@@ -30,7 +30,7 @@ function Track() {
 
         }
     ]
-    const [parcel, setParcel] = useState()
+    const [parcel, setParcel] = useState(parcelInitial)
 
     const [tracking_id, setTracking_Id] = useState("");
     const handleTrackParcel = async(e:any)=>{
