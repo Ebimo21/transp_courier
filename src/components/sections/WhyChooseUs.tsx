@@ -6,48 +6,48 @@ type Props = {}
 
 const WhyChooseUs = (props: Props) => {
   return (
-    <div>
-        <div className='flex flex-wrap gap-10 lg:gap-2 px-5 lg:px-10 py-10 justify-center items-center semibold max-w-[1250px] m-auto' >
-            <div className='basis-full grow flex flex-wrap lg:basis-5/12 text-center gap-5 justify-center'>
-                <div className='basis-10/12 rounded-sm hover:bg-lightBlue  sm:max-w-[310px] lg:max-w-[240px] leading-3 py-10 px-5 lg:p-5 sm:p-5  shadow-card--features'>
+    <div className=''>
+        <div className='flex flex-wrap gap-10 lg:gap-2 px-2 lg:px-10 py-10 justify-center items-center semibold max-w-[1250px] m-auto' >
+            <div className='basis-full grow flex flex-wrap lg:basis-5/12 text-center gap-4 justify-center'>
+                <div className='basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features'>
                     <img width={80} className='block m-auto' src='./images/Shipping.png'  />
-                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Shipping Options</h4>
-                    <span className='font-normal lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <h4 className='text-lightBlue my-3 text-xs lg:text-sm hover:text-yellow font-bold'>Shipping Options</h4>
+                    {/* <p className='font-normal  text-[8px] lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
-                    </span>
+                    </p> */}
                 </div>
-                <div className='basis-10/12 lg:translate-y-8 rounded-sm hover:bg-lightBlue  sm:max-w-[310px] lg:max-w-[240px] leading-3 py-10 px-5 lg:p-5 sm:p-5  shadow-card--features'>
+                <div className='basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features lg:translate-y-8'>
                     <img width={80} className='block m-auto' src='./images/Deliveries.png'  />
-                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Timely Deliveries</h4>
-                    <span className='font-normal lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <h4 className='text-lightBlue my-3 text-xs lg:text-sm hover:text-yellow font-bold'>Timely Deliveries</h4>
+                    {/* <p className='font-normal  text-[8px] lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
-                    </span>
+                    </p> */}
                 </div>
-                <div className='basis-10/12 rounded-sm hover:bg-lightBlue  sm:max-w-[310px] lg:max-w-[240px] leading-3 py-10 px-5 lg:p-5 sm:p-5  shadow-card--features'>
+                <div className='basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features'>
                     <img width={80} className='block m-auto' src='./images/Customer_Service.png'  />
-                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Customer Services</h4>
-                    <span className='font-normal lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <h4 className='text-lightBlue my-3 text-xs lg:text-sm hover:text-yellow font-bold'>Customer Service</h4>
+                    {/* <p className='font-normal leading-5 lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
-                    </span>
+                    </p> */}
                 </div>
-                <div className='basis-10/12 lg:translate-y-8 rounded-sm hover:bg-lightBlue  sm:max-w-[310px] lg:max-w-[240px] leading-3 py-10 px-5 lg:p-5 sm:p-5  shadow-card--features'>
+                <div className='basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features lg:translate-y-8'>
                     <img width={80} className='block m-auto' src='./images/Tracking_System.png'  />
-                    <h4 className='text-lightBlue my-3 lg:text-sm hover:text-yellow font-bold'>Tracking Systems</h4>
-                    <span className='font-normal lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <h4 className='text-lightBlue my-3 text-xs lg:text-sm hover:text-yellow font-bold'>Tracking Systems</h4>
+                    {/* <p className='font-normal leading-5 lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
-                    </span>
+                    </p> */}
                 </div>
             </div>
-            <div className='basis-full lg:basis-6/12 lg:max-w-[500px] '>
+            <div className='basis-full lg:basis-6/12 px-6 lg:max-w-[500px] '>
                 <span className='bg-yellow px-2 text-xs font-bold py-1'>Our Features</span>
                 <h3 className='text-lightBlue text-2xl font-bold  mt-4'>Why Choose Us</h3>
-                <p className='text-light mt-4 text-sm text-lightBlue'>Sustainability is an increasingly important factor for many customers when
+                <p className='text-light mt-4 text-base text-lightBlue'>Sustainability is an increasingly important factor for many customers when
                     choosing a shipping company. Your shipping company can stand out by demonstrating
                     a commitment to sustainable practices, such as using energy-efficient vehicles,
                     reducing waste and offsetting carbon emissions.
                 </p>
 
-                <div className='mt-5 flex  lg:text-xs flex-wrap gap-5'>
+                <div className='mt-5 flex text-sm  lg:text-xs flex-wrap gap-5'>
                         <div className='flex flex-col gap-3'>
                             <span className='flex items-center gap-3 text-blue font-medium'>
                                 <span className='bg-yellow inline-block rounded-full'>

@@ -4,6 +4,8 @@ import React from 'react'
 type Props = {}
 
 const index = (props: Props) => {
+
+
   return (
     <Layout title='Home'>
       <div className='md:ml-20 mb-20 p-4'>

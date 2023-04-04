@@ -23,7 +23,7 @@ function Briefing() {
     <div>
         <div className='p-5'>
             <div className='flex flex-wrap gap-3 justify-center items-center'>
-               <div className='flex flex-wrap justify-center basis-9/12 gap-10'>
+               <div className='flex flex-wrap justify-center basis-12/12 lg:basis-9/12 gap-5'>
                 {Images.map((item, index)=>{
                     return(
                         <div 
@@ -39,7 +39,7 @@ function Briefing() {
                 })}
                 </div>
 
-                <div className='basis-11/12 lg:basis-8/12 text-justify'>
+                <div className='basis-11/12 lg:basis-8/12'>
                 <p className='mt-4'>
             We take pride in being a reliable partner for our clients, oǖ ering a wide range of logistics services to meet their 
 needs and help them succeed in today&apos;s competitive market. Our dedicated team of professionals has years 
