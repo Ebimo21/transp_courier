@@ -36,7 +36,44 @@ export const getParcel = async(id:string)=>{
         return {success: true, data: response.data}
     }catch(err: any){
         console.log(err.message)
-        return {success: true, data: data}
+        return {success: false, message: err.message}
     }
 
+}
+
+export const addNewParcel = async(formdata:newParcel)=>{
+    try {
+        const response = await axios.post(
+            `${host}parcel`,
+            {
+                formdata
+            },
+            {
+
+            },
+        )
+
+        console.log(response);
+        return {success: true, data: response.data}
+    }catch(err:any){
+        console.log(err.message)
+        return {success: false, message: err.message}
+    }
+
+}
+
+export const getAllParcels = async (page:number) =>{
+    try {
+        const response = await axios.get(
+            `${host}parcels/${page}`,
+            {
+
+            },
+        )
+        console.log(response);
+        return {success: true, data: response.data}
+    }catch(err: any){
+        console.log(err.message);
+        return {success: false}
+    }
 }

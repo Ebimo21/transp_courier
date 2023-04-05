@@ -62,9 +62,9 @@ const Nav = ({ sidebarOutsideClick }) => {
         </div>
 
         <NavItem
-          hrefLink='/category'
+          hrefLink='/admin/parcel'
           sidebarStatus={sidebarStatus}
-          menuTitle="Category"
+          menuTitle="Parcels"
           subMenu={false}
           subMenuArray={null}
         >
