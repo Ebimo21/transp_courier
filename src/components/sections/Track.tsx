@@ -36,7 +36,7 @@ function Track() {
     const handleTrackParcel = async(e:any)=>{
         e.preventDefault()
         const response = await getParcel(tracking_id);
-        console.log(response);
+        // console.log(response);
         setParcel(response?.data)
     }
 

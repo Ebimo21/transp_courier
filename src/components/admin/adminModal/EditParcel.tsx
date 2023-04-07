@@ -1,86 +1,86 @@
-import Layout from '@/components/layout/admin/Layout'
-import LayoutNew from '@/components/layout/admin/LayoutNew'
-import { addNewParcel } from '@/config/apiCalls'
-import React, {Reducer, useReducer } from 'react'
+import React, { Dispatch, FormEvent, RefObject, useEffect, useState } from 'react';
+import {getParcel} from "../../../config/apiCalls"
 
-type Props = {}
+type dispatchType ={
+    type: string,
+    payload: string,
+}
+type Props = {
+    handleParcelUpdate: (e: FormEvent, func: (e:FormEvent)=>void)=>void,
+    dispatch: ({type, payload}: dispatchType)=> void,
+    parcelAction: parcelAction,
+    id: string,
+    formElement: RefObject<HTMLFormElement>,
+    handleCallbackUpdate: (e:FormEvent)=>void,
+    show: Boolean,
+    onClose: ()=>void,
+    state: Object,
+}
 
-const Index = (props: Props) => {
 
-  const parcelAction =  {
-    RECIEVER_EMAIL: "reciever_email",
-    RECIEVER_NAME: "reciever_name",
-    VEHICLE_TYPE: "vehicle_type",
-    DESTINATION: "destination",
-    RECIEVER_ADDRESS: "reciever_address",
-    RECIEVER_PHONE: "reiever_phone",
-    DESCRIPTION: "description",
-    ROUTE: "route",
-    SENDER_NAME: "sender_name",
-    DELIVERY_DATE: "delivery_date",
-    CURRENT_LOCATION: "current_location",
-  }
 
-  const initial:newParcel ={
-    reciever_email: "",
-    reciever_name: "",
-    vehicle_type: "",
-    destination: "",
-    reciever_address: "",
-    reciever_phone: 0,
-    description: "",
-    route: 0,
-    sender_name: "",
-    delivery_date: "",
-    current_location: "",
-  }
-
-  const reducer = (state:any, action:any) =>{
-    const {type, payload} = action;
-    // console.log(action);
-    switch(type){
-      case parcelAction.RECIEVER_EMAIL:
-        return {...state, reciever_email: payload};
-      case parcelAction.RECIEVER_NAME:
-        return {...state, reciever_name: payload};
-      case parcelAction.VEHICLE_TYPE:
-        return {...state, vehicle_type: payload};
-      case parcelAction.DESTINATION:
-        return {...state, destination: payload};
-      case parcelAction.RECIEVER_ADDRESS:
-        return {...state, reciever_address: payload};
-      case parcelAction.RECIEVER_PHONE:
-        return {...state, reciever_phone: payload};
-      case parcelAction.DESCRIPTION:
-        return {...state, description: payload};
-      case parcelAction.ROUTE:
-        return {...state, route: payload}
-      case parcelAction.SENDER_NAME:
-        return {...state, sender_name: payload};
-      case parcelAction.DELIVERY_DATE:
-        return {...state, delivery_date: payload};
-      case parcelAction.CURRENT_LOCATION:
-        return {...state, current_location: payload}
-      default:
-        return state;
-    }
+const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, formElement, handleCallbackUpdate, show, onClose}: Props) => {
+  const [parcel, setParcel] = useState<newParcel>()
     
-  }
+    useEffect(()=>{
+        const getParcelDetails = async() =>{
+            const response = await getParcel(id) 
+            setParcel(response.data[0])
+        }
+        console.log(id);
 
-  const [newParcel, dispatch] = useReducer(reducer, initial)
+        getParcelDetails()
+    },[id])
+    useEffect(()=>{
+        console.log(state);
+    },[state])
 
-  const handleNewParcel = async(e: any)=>{
-    e.preventDefault()
-    // console.log(newParcel);
-    await addNewParcel(newParcel);
+    useEffect(()=>{
+      console.log(state);
+        const updateState =()=>{
+          const el = formElement?.current?.elements as HTMLFormControlsCollection;
+          //  ("count");
+          
+          for (let i = 0; i < el?.length; i++) {
+            const control = el[i] as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+            if (control !instanceof HTMLSelectElement) {
+              // Use a type guard to determine whether the control is an HTMLSelectElement
+              dispatch({ type: control?.name, payload: control?.value });
+               (control.name);
+              // formData[control.name] = control.defaultValue;
+            } else {
+               (control.name);
+              // For all other controls, use the value property
+              //  (control.defaultValue);
+              dispatch({ type: control?.name, payload: control?.defaultValue });
+              // formData[control.name] = control.value;
+            }
+          }
+          
 
-  }
+        
+            // for(let i=0; i<el?.length; i++){
+            //   const control = el[i] as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+            //   dispatch({ type: control.name, payload: control?.defaultValue });
+            // }
 
+                // dispatch({type: el[i]?.name, payload: el[i].defaultValue})
+        }
 
+        updateState()
+    }, [parcel])
+    
+    if(!show) {return null}
   return (
-    <LayoutNew>
-      <div className='md:ml-20 mb-20 p-4'>
-        <form onSubmit={handleNewParcel} className="max-w-2xl mr-auto">
+    <>
+    <div onClick={onClose} className=' fixed top-0 left-0 w-full h-screen flex items-center  z-10 bg-[rgba(0,0,0,0.4)] text-xs md:text-base '>
+        <div 
+            onClick={e => e.stopPropagation()}
+            className='bg-[#fefefe] overflow-auto h-[50vh] mx-auto rounded-lg my-[1%] max-w-sm md:max-w-[700px] p-5 md:px-20 border-none outline-none'>
+            <h3 className='font-bold  mb-2'>Edit offer</h3>
+            {/* <p className='text-sm'>Enter the details on the offer you are creating below</p> */}
+
+        <form onSubmit={(e)=>handleParcelUpdate(e, handleCallbackUpdate)} ref={formElement} className="max-w-2xl mr-auto">
           <div className="grid md:grid-cols-2 gap-4 ">
             <div>
               <label 
@@ -92,7 +92,30 @@ const Index = (props: Props) => {
                 id="tracking_id" 
                 name="tracking_id"
                 disabled
+                defaultValue={parcel?.Tracking_id}
                 placeholder="Auto Generated"/>
+            </div>
+            <div>
+              <label 
+                className="block mb-2 font-bold" 
+                htmlFor="vehicle_type">Status</label>
+                <select
+                  name='status'
+                  id='status'
+                  onChange={(e)=>dispatch({type: parcelAction.STATUS, payload: e.target.options[e.target.selectedIndex].value})} 
+                  className="w-full px-3 py-2 border border-gray-400 rounded"
+                  required
+                  defaultValue={parcel?.status}
+                >
+                  <option selected={parcel?.vehicle_type == "Pending"}>Pending</option>
+                  <option selected={parcel?.vehicle_type == "Waiting"}>Waiting</option>
+                  <option selected={parcel?.vehicle_type == "Hold"}>Hold</option>
+                  <option selected={parcel?.vehicle_type == "Transit"}>Transit</option>
+                  <option selected={parcel?.vehicle_type == "Failure"}>Failure</option>
+
+                </select>
+              {/* <input 
+                className="w-full px-3 py-2 border border-gray-400 rounded" type="text" id="vehicle_type" name="vehicle_type" placeholder="Enter Vehicle Type"/> */}
             </div>
             <div>
               <label 
@@ -105,6 +128,8 @@ const Index = (props: Props) => {
                 id="reciever_email" 
                 name="reciever_email" 
                 placeholder="Enter Receiver Email"
+                defaultValue={parcel?.reciever_email}
+
                 required/>
             </div>
             <div>
@@ -120,23 +145,31 @@ const Index = (props: Props) => {
                 placeholder="Enter Receiver Name"
                 minLength={3}
                 maxLength={50}
-                required/>
+                required
+                defaultValue={parcel?.reciever_name}
+                />
             </div>
             <div>
               <label 
                 className="block mb-2 font-bold" 
                 htmlFor="vehicle_type">Vehicle Type</label>
                 <select
+                  name='vehicle_type'
+                  id='vehicle_type'
                   onChange={(e)=>dispatch({type: parcelAction.VEHICLE_TYPE, payload: e.target.options[e.target.selectedIndex].value})} 
                   className="w-full px-3 py-2 border border-gray-400 rounded"
-                  required>
-                  <option>Air</option>
-                  <option>Ship</option>
-                  <option selected>Bus</option>
+                  required
+                  defaultValue={parcel?.vehicle_type}
+                >
+                  <option defaultValue={parcel?.vehicle_type == "Air"? "Air": ""}>Air</option>
+                  <option defaultValue={parcel?.vehicle_type == "Ship"? "Ship": ""}>Ship</option>
+                  <option defaultValue={parcel?.vehicle_type == "Bus"? "Bus": ""}>Bus</option>
+
                 </select>
               {/* <input 
                 className="w-full px-3 py-2 border border-gray-400 rounded" type="text" id="vehicle_type" name="vehicle_type" placeholder="Enter Vehicle Type"/> */}
             </div>
+            
             <div>
               <label 
                 className="block mb-2 font-bold" 
@@ -148,7 +181,9 @@ const Index = (props: Props) => {
                 id="destination" 
                 name="destination" 
                 placeholder="Enter Destination"
-                required/>
+                required
+                defaultValue={parcel?.destination}
+                />
             </div>
             <div>
               <label 
@@ -161,6 +196,8 @@ const Index = (props: Props) => {
                 id="reciever_address" 
                 name="reciever_address" 
                 placeholder="Enter Receiver Address"
+                defaultValue={parcel?.reciever_address}
+
                 required/>
             </div>
             <div>
@@ -174,6 +211,7 @@ const Index = (props: Props) => {
                 id="reciever_phone" 
                 name="reciever_phone" 
                 placeholder="Enter Receiver Phone"
+                defaultValue={parcel?.reciever_phone}
                 required/>
             </div>
             </div>
@@ -183,6 +221,9 @@ const Index = (props: Props) => {
                 className="block mb-2 font-bold" 
                 htmlFor="reciever_phone">Description</label>
                 <textarea
+                  name='description'
+                  id='description'
+                  defaultValue={parcel?.description}
                   onChange={(e)=>dispatch({type: parcelAction.DESCRIPTION, payload: e.target.value})} 
                   cols={40} rows={10}>
 
@@ -195,6 +236,7 @@ const Index = (props: Props) => {
                 className="block mb-2 font-bold" 
                 htmlFor="route">Route</label>
               <input 
+                defaultValue={parcel?.route}
                 onChange={(e)=>dispatch({type: parcelAction.ROUTE, payload: e.target.value})} 
                 className="w-full px-3 py-2 border border-gray-400 rounded" 
                 type="text" 
@@ -208,6 +250,7 @@ const Index = (props: Props) => {
                 className="block mb-2 font-bold" 
                 htmlFor="route">Sender Name</label>
               <input
+                defaultValue={parcel?.sender_name}
                 onChange={(e)=>dispatch({type: parcelAction.SENDER_NAME, payload: e.target.value})}  
                 className="w-full px-3 py-2 border border-gray-400 rounded" 
                 type="text" 
@@ -225,9 +268,11 @@ const Index = (props: Props) => {
                 onChange={(e)=>dispatch({type: parcelAction.DELIVERY_DATE, payload: e.target.value})} 
                 className="w-full px-3 py-2 border border-gray-400 rounded" 
                 type="datetime-local" 
-                id="sender_name" 
-                name="sender_name" 
-                required/>
+                id="delivery_date" 
+                name="delivery_date" 
+                required
+                defaultValue={parcel?.delivery_date.slice(0, -5).replace(/[T]/, " ")}
+                />
             </div>
 
             <div>
@@ -241,7 +286,9 @@ const Index = (props: Props) => {
                 id="current_location" 
                 name="current_location" 
                 placeholder="Enter Parcel Location"
-                required/>
+                required
+                defaultValue={parcel?.current_location}
+                />
             </div>
             {/* <div>
               <label 
@@ -256,11 +303,12 @@ const Index = (props: Props) => {
                 required/>
             </div> */}
               </div>
-              <button>Submit</button>
+              <button defaultValue={"submit"}>Submit</button>
         </form>
-      </div>
-    </LayoutNew>
+        </div>
+    </div>
+    </>
   )
 }
 
-export default Index
+export default EditParcel

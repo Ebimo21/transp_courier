@@ -1,5 +1,7 @@
 import axios from "axios"
 const host = "http://localhost:3001/"
+
+
 const data = [
     {
       "id": 9,
@@ -40,6 +42,40 @@ export const getParcel = async(id:string)=>{
     }
 
 }
+
+export const deleteParcelDetails = async (tracking_id:string|undefined)=>{
+    try {
+        const response = await axios.delete(
+            `${host}parcel/track/${tracking_id}/delete`,
+            
+        )
+        console.log(response);
+        console.log(response.data);
+        return {success: true, message: response.data.message}
+    }catch(err:any){
+        console.log(err.message);
+        return {success: false, message: err.message};
+
+    }
+}
+export const updateParcelDetails = async (tracking_id:string, data:newParcel)=>{
+    try {
+        const response = await axios.put(
+            `${host}parcel/track/${tracking_id}/update`,
+            {
+                data
+            }
+        )
+        console.log(response);
+        console.log(response.data);
+        return {success: true, data: response.data}
+    }catch(err:any){
+        console.log(err.message);
+        return {success: false, message: err.message};
+
+    }
+}
+
 
 export const addNewParcel = async(formdata:newParcel)=>{
     try {
