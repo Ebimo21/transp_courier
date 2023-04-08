@@ -1,5 +1,5 @@
 import axios from "axios"
-const host = "http://localhost:3001/"
+const host = "http://node.tradefactory.net/"
 
 
 const data = [
