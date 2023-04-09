@@ -1,5 +1,12 @@
-import axios from "axios"
-const host = "https://node.tradefactory.net/"
+import axios from "axios";
+const host = "https://node.tradefactory.net/";
+// const host = "http://localhost:3001/";
+
+type loginDetails = {
+    email: string,
+    password: string,
+}
+
 
 
 const data = [
@@ -43,7 +50,7 @@ export const getParcel = async(id:string)=>{
 
 }
 
-export const deleteParcelDetails = async (tracking_id:string|undefined)=>{
+export const deleteParcelDetails = async (tracking_id:string|undefined|null)=>{
     try {
         const response = await axios.delete(
             `${host}parcel/track/${tracking_id}/delete`,
@@ -52,6 +59,24 @@ export const deleteParcelDetails = async (tracking_id:string|undefined)=>{
         console.log(response);
         console.log(response.data);
         return {success: true, message: response.data.message}
+    }catch(err:any){
+        console.log(err.message);
+        return {success: false, message: err.message};
+
+    }
+}
+
+export const loginAdmin = async ({email, password}:loginDetails)=>{
+    try {
+        const response = await axios.post(
+            `${host}login`,
+            {
+                data: {email, password}
+            },
+            
+        )
+        
+        return response.data
     }catch(err:any){
         console.log(err.message);
         return {success: false, message: err.message};

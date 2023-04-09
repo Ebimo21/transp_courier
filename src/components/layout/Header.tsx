@@ -4,15 +4,6 @@ import React, { ReactNode, useEffect, useState } from 'react'
 
 const montserrate = Montserrat({subsets: ["latin"]})
 
-// <script>
-// 				const btn = document.querySelector("button.mobile-menu-button");
-// 				const menu = document.querySelector(".mobile-menu");
-
-// 				btn.addEventListener("click", () => {
-// 					menu.classList.toggle("hidden");
-// 				});
-// 			</script>
-
 const Header = () => {
  const [show, setShow] = useState(true)
   return (
@@ -58,13 +49,13 @@ const Header = () => {
 					</div>
 				</div>
 			</div>
-			<div className={`${show? 'hidden': ''} mobile-menu`}>
+			<div className={`${show? 'hidden': 'absolute bg-white w-full p-5 text-lg'} mobile-menu`}>
 				<ul className="">
-					<li><Link href="/" className="block text-sm px-2 py-4 hover:bg-lightBlue hover:text-lightBlue transition duration-300 border-blue font-semibold ">Home</Link></li>
-					<li><Link href="/about" className="block text-sm px-2 py-4 hover:bg-lightBlue text-blue hover:text-lightBlue transition duration-300 border-blue font-semibold ">About Us</Link></li>
-					<li><Link href="/services" className="block text-sm px-2 py-4 hover:bg-lightBlue text-blue  hover:text-lightBlue transition duration-300 border-blue font-semibold ">Services</Link></li>
-					<li><Link href="#" className="block text-sm px-2 py-4 hover:bg-lightBlue  text-blue  hover:text-lightBlue transition duration-300 border-blue font-semibold ">Contact</Link></li>
-					<li><Link href="/track" className="inline-block py-2 px-2 font-medium text-blue rounded bg-yellow transition duration-300">Track Parcel</Link></li>
+					<li><Link href="/" className="block px-2 py-4 hover:bg-lightBlue hover:text-white transition duration-300 border-blue font-semibold ">Home</Link></li>
+					<li><Link href="/about" className="block px-2 py-4 hover:bg-lightBlue text-blue hover:text-white transition duration-300 border-blue font-semibold ">About Us</Link></li>
+					<li><Link href="/services" className="block px-2 py-4 hover:bg-lightBlue text-blue  hover:text-white transition duration-300 border-blue font-semibold ">Services</Link></li>
+					<li><Link href="#" className="block px-2 py-4 hover:bg-lightBlue  text-blue  hover:text-white transition duration-300 border-blue font-semibold ">Contact</Link></li>
+					<li><Link href="/track" className="inline-block py-2 px-5 font-medium text-blue rounded bg-yellow transition duration-300 mt-5">Track Parcel</Link></li>
 				</ul>
 			</div>
 			

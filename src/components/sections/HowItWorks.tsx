@@ -6,7 +6,7 @@ type Props = {}
 function HowItWorks({}: Props) {
   return (
     <div>
-        <div className='text-center p-5'>
+        <div className='text-center mt-5 p-5'>
             <span className='text-xs font-bold'>Logisitics & Transportation</span>
             <h3 className='text-3xl font-bold text-lightBlue'>How it Works</h3>
             <p className='text-sm font-medium md:w-[500px] mt-2 m-auto'>You choose the cities where you&apos;d like to deliver. All deliveries are 

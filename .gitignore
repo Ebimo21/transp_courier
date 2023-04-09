@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+remix_icons
+/src/components/iconify/RemixIcon_Svg_v3.1.1
+
 # testing
 /coverage
 

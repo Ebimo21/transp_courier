@@ -14,7 +14,6 @@ import Team from '@/components/sections/Team'
 const inter = Inter({ subsets: ['latin'] })
 const montserrate = Montserrat({subsets: ['vietnamese']})
 
-
 export default function Home() {
   return (
     // <>

@@ -35,16 +35,16 @@ const LayoutNew = ({children}: Props) => {
             </div>
         </div>
         {menuOpen && (
-            <div className="lg:hidden">
+            <div className="lg:hidden absolute w-full bg-white">
             <div className="mt-2 px-2 pt-2 pb-3">
-                <Link href={'/admin/login'}>
-                    <span className="block px-3 py-2 rounded text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</span>
+                <Link href={'/admin'}>
+                    <span className="block px-3 py-2 rounded text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</span>
                 </Link>
                 <Link href={"/admin/parcels"}>
                     <span className="mt-1 block px-3 py-2 rounded text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Parcels</span>
 
                 </Link>
-            <a href="#" className="mt-1 block px-3 py-2 rounded text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
+            <a href="#" className="mt-1 block px-3 py-2 rounded text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Send Mail</a>
             <a href="#" className="mt-1 block px-3 py-2 rounded text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Support</a>
             </div>
         </div>

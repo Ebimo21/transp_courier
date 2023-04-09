@@ -1,34 +1,41 @@
+import ConfirmDelete from '@/components/admin/adminModal/ConfirmDelete';
 import Congratulations from '@/components/admin/adminModal/Congratulations';
 import EditParcel from '@/components/admin/adminModal/EditParcel';
 import Error from '@/components/admin/adminModal/Error';
+import { Add } from '@/components/iconify/Add';
 import Delete from '@/components/iconify/Delete';
 import EditBox from '@/components/iconify/EditBox';
 import Layout from '@/components/layout/admin/Layout';
 import LayoutNew from '@/components/layout/admin/LayoutNew';
 import { deleteParcelDetails, getAllParcels, updateParcelDetails } from '@/config/apiCalls';
+import { useAuthContext } from '@/context/authContext';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, {FormEvent, RefObject, useEffect, useReducer, useRef, useState} from 'react';
 
 type Props = {};
 
 const Index = (props: Props) => {
-  const formEl: RefObject<HTMLFormElement> = useRef(null)
-  const [refresh, setRefresh] = useState<Boolean>(false)
+  const { isUserAuthenticated } = useAuthContext();
+  const router = useRouter();
+
+  React.useEffect(() => {
+    console.log(isUserAuthenticated());
+    // checks if the user is authenticated
+    !isUserAuthenticated()
+    ? router.push("/admin/login"): ""
+  }, []);
+
+  const formEl: RefObject<HTMLFormElement> = useRef(null);
+  const [refresh, setRefresh] = useState<Boolean>(false);
+  const [itemToDelete, setItemToDelete] = useState<string | null>(null);
+  const [deleteModal, setDeleteModal] = useState<Boolean>(false);
 
   const [parcels, setParcels] = useState<newParcel[]>();
   const [editParcelModal, setEditParcelModal] = useState(false);
   const [parcelId, setParcelId] = useState<string>("")
 
-  type notify ={
-    message?: string,
-    success: Boolean,
-    data?: {
-      data?: {
-        msg: string
-      }[] | undefined,
-      // data?: any[]|undefined,
-    }
-  }
+
   const [successNotification, setSuccessNotification] = useState<Boolean>(false)
     const [errorNotification, setErrorNotification] = useState<Boolean>(false)
     const [notification, setNotification] = useState<notify>()
@@ -123,9 +130,9 @@ const initial:newParcel ={
   current_location: "",
 }
 
-const handleDelete = async(tracking_id:string| undefined) =>{
-  console.log(tracking_id);
-  const response = await deleteParcelDetails(tracking_id);
+const handleDelete = async():Promise<void> =>{
+  setDeleteModal(false);
+  const response = await deleteParcelDetails(itemToDelete);
   console.log(response);
   if(response.success){
     setSuccessNotification(prev=>true);
@@ -153,6 +160,10 @@ const [parcelEdit, dispatch] = useReducer(reducer, initial)
   return (
       <LayoutNew>
         <div>
+          <div className=''>
+            <span>Parcels</span>
+            <div><Add/></div>
+          </div>
         <div className='overflow-auto text-left shadow  whitespace-nowrap'>
           <table className='overflow-auto max-w-[200px]'>
             <thead>
@@ -189,6 +200,7 @@ const [parcelEdit, dispatch] = useReducer(reducer, initial)
                     <td className='p-3 w-20'>{item?.reciever_phone}</td>
                     <td className='p-3 w-20 whitespace-nowrap'>{item?.vehicle_type}</td>
                     <td className='p-3 w-20'>{item?.reciever_address}</td>
+                    <td className='p-3 w-20'>{item?.reciever_email}</td>
                     <td className='p-3 w-20'>{item?.sender_name}</td>
                     <td className='p-3 w-20'>{item?.route}</td>
                     <td className='p-3 w-20'>{item?.description}</td>
@@ -199,7 +211,7 @@ const [parcelEdit, dispatch] = useReducer(reducer, initial)
                           <EditBox fill='#1f29e1' />
                           </span>
 
-                      <span onClick={()=>{handleDelete(item?.Tracking_id)}}><Delete fill="#eb3c3c"/></span>
+                      <span onClick={()=>{setItemToDelete(item?.Tracking_id ?? null); setDeleteModal(prev=>!prev)}}><Delete fill="#eb3c3c"/></span>
                       </td>
                 </tr>
                 )
@@ -221,6 +233,8 @@ const [parcelEdit, dispatch] = useReducer(reducer, initial)
           onClose={()=>setEditParcelModal(prev =>!prev)} />
           }
 
+          {deleteModal && <ConfirmDelete show={deleteModal} onClose={()=>setDeleteModal(false)} lead='Confirm Delete' deleted={handleDelete} />}
+
       <Congratulations
                   lead={notification?.message} 
                   show={successNotification} 
@@ -234,6 +248,8 @@ const [parcelEdit, dispatch] = useReducer(reducer, initial)
         onClose={()=>setErrorNotification(false)} />
         </div>
       </LayoutNew>
+
+      
   )
 }
 

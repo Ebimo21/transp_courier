@@ -1,5 +1,9 @@
 import React from 'react'
 import ArrowRight from '../iconify/ArrowRight'
+import { Warehouse } from '../iconify/Warehouse'
+import { OceanFrieght } from '../iconify/OceanFriegth'
+import { AirFreight } from '../iconify/AirFreight'
+import { RoadFreight } from '../iconify/RoadFreight'
 
 
 type Props = {}
@@ -25,7 +29,7 @@ const WhatWeOffer = (props: Props) => {
         },
     ]
   return (
-    <div className='p-5 max-w-[1100px] m-auto '>
+    <div className='p-5 max-w-[1100px] mt-5 m-auto '>
         <div className=''>
             <h2 className='font-bold text-blue mb-2 mt-4 text-3xl'>What we Offer</h2>
             <p className='font-light text-sm md:w-[500px]'>We find delight in  providing comprehensive and professional freight
@@ -40,7 +44,13 @@ const WhatWeOffer = (props: Props) => {
                             key={index} 
                             className="flex flex-col shadow-card basis-10/12 md:basis-2/12 grow bg-white py-4 px-5 rounded
                                         b border-b-8 border-solid border-b-yellow ">
-                            <img className='bg-lightYellow p-3 rounded-full ' src={item.image} width={60} alt={item.lead}/>
+                            {/* <div className='w-20 h-16 relative bg-lightYellow p-3 rounded-full'><img className=' absolute w-10 m-auto block' src={item.image}  alt={item.lead}/></div> */}
+                            <div className='w-16 h-16 bg-lightYellow p-3 rounded-full'>
+                                {item.svg== "Warehousing" && <Warehouse/>}
+                                {item.svg== "Ocean Freight" && <OceanFrieght/>}
+                                {item.svg== "Air Freight" && <AirFreight/>}
+                                {item.svg== "Road Freight" && <RoadFreight/>}
+                            </div>
                             <h3 className='font-bold text-blue mt-8 mb-5'>{item.lead}</h3>
                             <p className='t font-light text-sm '>{item.sub}</p>
                             <span className='bg-blue p-1 w-7 h-7 inline-block rounded-full my-4 '><ArrowRight width={20} height={20} fill='#fff'/></span>
@@ -62,29 +72,6 @@ const WhatWeOffer = (props: Props) => {
               )  
             })}
             </div>
-
-            {/* <div className='flex flex-wrap lg:flex-nowrap gap-20 md:gap-10 mt-10 md:-translate-y-10 text-2xl text-center'>
-                <div className='basis-full md:basis-3/12 text-white'>
-                    <h3 className='text-6xl font-bold text-yellow'>+304,521</h3>
-                    <p className='f font-bold mt-2 w-60 m-auto'>Parcels Shipped Safely</p>
-                </div>
-                <div className='basis-full md:basis-3/12 text-white'>
-                    <h3 className='text-6xl font-bold text-yellow'>+304,521</h3>
-                    <p className='f font-bold mt-2 w-60 m-auto'>Parcels Shipped Safely</p>
-                </div>
-                <div className='basis-full md:basis-3/12 text-white'>
-                    <h3 className='text-6xl font-bold text-yellow'>+304,521</h3>
-                    <p className='f font-bold mt-2 w-60 m-auto'>Parcels Shipped Safely</p>
-                </div>
-                <div className='basis-full md:basis-3/12 text-white'>
-                    <h3 className='text-6xl font-bold text-yellow'>+304,521</h3>
-                    <p className='f font-bold mt-2 w-60 m-auto'>Parcels Shipped Safely</p>
-                </div>
-
-            </div> */}
-
-
-            
         </div>
     </div>
   )
@@ -96,25 +83,29 @@ const items = [
     lead: "Wharehousing",
     sub: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
     icon: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
-    image: "./images/Warehousing.svg"
+    image: "./images/Warehousing.svg",
+    svg: "Warehousing",
 },
     {
     lead: "Air Freight",
     sub: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
     icon: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
-    image: "./images/Air_freight.svg"
+    image: "./images/Air_freight.svg",
+    svg: "Air Freight",
 },
     {
     lead: "Ocean Freight",
     sub: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
     icon: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
-    image: "./images/Ocean_freight.svg"
+    image: "./images/Ocean_freight.svg",
+    svg: "Ocean Freight",
 },
     {
     lead: "Road Freight",
     sub: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
     icon: "We find delight in  providing comprehensive and professional freight forwarding services, for easing your supply chain needs.",
-    image: "./images/Road_freight.svg"
+    image: "./images/Road_freight.svg",
+    svg: "Road Freight",
 },
 ]
 

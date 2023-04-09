@@ -15,6 +15,17 @@ interface newParcel {
     delivery_date: string,
 }
 
+type notify ={
+    message?: string,
+    success: Boolean,
+    data?: {
+      data?: {
+        msg: string
+      }[] | undefined,
+      // data?: any[]|undefined,
+    }
+  }
+
 interface parcelAction {
     RECIEVER_EMAIL: string;
     RECIEVER_NAME: string;

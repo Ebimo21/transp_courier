@@ -16,7 +16,7 @@ const Landing = (props: Props) => {
                 < p className='f font-light'>We find delight in  providing comprehensive and professional freight
                   forwarding services, for easing your supply chain needs.
                 </p>
-                <Link href="/" ><button className='bg-yellow py-2 text-blue font-semibold text-sm rounded-full w-40 mt-5 '>Track Parcel</button></Link>
+                <Link href="/track" ><button className='bg-yellow py-2 text-blue font-semibold text-sm rounded-full w-40 mt-5 '>Track Parcel</button></Link>
               </div>
             </div>
             </div>

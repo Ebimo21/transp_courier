@@ -71,7 +71,7 @@ const Team = (props: Props) => {
             <div className='flex flex-wrap justify-center gap-2 mt-5'>
                 {team.map((item, index)=>{
                     return (
-                        <div className='max-w-[288px] basis-8/12' key={index}>
+                        <div className='max-w-[288px] basis-12/12' key={index}>
                             <img src={item.img} alt={item.alt} />
                             <div className='bg-white -translate-y-10 w-5/6 justify-between rounded-sm flex items-end p-3  m-auto'>
                                 <div>
@@ -79,7 +79,7 @@ const Team = (props: Props) => {
                                     <p className='font-light '>{item.role}</p>
                                 </div>
 
-                                <div className='flex items-centers'>
+                                <div className='flex items-centers gap-2'>
                                     <Link href={item.socials.twitter}>
                                         <BsTwitter/>
                                     </Link>

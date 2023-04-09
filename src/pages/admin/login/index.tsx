@@ -1,266 +1,79 @@
-import Layout from '@/components/layout/admin/Layout'
-import LayoutNew from '@/components/layout/admin/LayoutNew'
-import { addNewParcel } from '@/config/apiCalls'
-import React, {Reducer, useReducer } from 'react'
+import Congratulations from '@/components/admin/adminModal/Congratulations'
+import Error from '@/components/admin/adminModal/Error'
+import { loginAdmin } from '@/config/apiCalls'
+import { useAuthContext } from '@/context/authContext'
+import { useRouter } from 'next/router'
+import React, {useState, useContext} from 'react'
+
 
 type Props = {}
 
-const Index = (props: Props) => {
+const Login = (props: Props) => {
+    const router = useRouter();
+    const {setAuthState } = useAuthContext()
 
-  const parcelAction =  {
-    RECIEVER_EMAIL: "reciever_email",
-    RECIEVER_NAME: "reciever_name",
-    VEHICLE_TYPE: "vehicle_type",
-    DESTINATION: "destination",
-    RECIEVER_ADDRESS: "reciever_address",
-    RECIEVER_PHONE: "reiever_phone",
-    DESCRIPTION: "description",
-    ROUTE: "route",
-    SENDER_NAME: "sender_name",
-    DELIVERY_DATE: "delivery_date",
-    CURRENT_LOCATION: "current_location",
-  }
+    const [successNotification, setSuccessNotification] = useState<Boolean>(false)
+    const [errorNotification, setErrorNotification] = useState<Boolean>(false)
+    const [notification, setNotification] = useState<notify>()
 
-  const initial:newParcel ={
-    reciever_email: "",
-    reciever_name: "",
-    vehicle_type: "",
-    destination: "",
-    reciever_address: "",
-    reciever_phone: 0,
-    description: "",
-    route: 0,
-    sender_name: "",
-    delivery_date: "",
-    current_location: "",
-  }
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
 
-  const reducer = (state:any, action:any) =>{
-    const {type, payload} = action;
-    // console.log(action);
-    switch(type){
-      case parcelAction.RECIEVER_EMAIL:
-        return {...state, reciever_email: payload};
-      case parcelAction.RECIEVER_NAME:
-        return {...state, reciever_name: payload};
-      case parcelAction.VEHICLE_TYPE:
-        return {...state, vehicle_type: payload};
-      case parcelAction.DESTINATION:
-        return {...state, destination: payload};
-      case parcelAction.RECIEVER_ADDRESS:
-        return {...state, reciever_address: payload};
-      case parcelAction.RECIEVER_PHONE:
-        return {...state, reciever_phone: payload};
-      case parcelAction.DESCRIPTION:
-        return {...state, description: payload};
-      case parcelAction.ROUTE:
-        return {...state, route: payload}
-      case parcelAction.SENDER_NAME:
-        return {...state, sender_name: payload};
-      case parcelAction.DELIVERY_DATE:
-        return {...state, delivery_date: payload};
-      case parcelAction.CURRENT_LOCATION:
-        return {...state, current_location: payload}
-      default:
-        return state;
+    const handleLogin = async (e:any)=>{
+        e.preventDefault();
+        const response = await loginAdmin({email, password});
+        if(response.success){
+            setSuccessNotification(prev=>true);
+            setAuthState({data: "admin"})
+            router.push('/admin')
+        }else{
+            setErrorNotification(prev=>true);
+            setAuthState({data: ""})
+        }
+        setNotification(response);
     }
     
-  }
-
-  const [newParcel, dispatch] = useReducer(reducer, initial)
-
-  const handleNewParcel = async(e: any)=>{
-    e.preventDefault()
-    // console.log(newParcel);
-    await addNewParcel(newParcel);
-
-  }
-
-
   return (
-    <LayoutNew>
-      <div className='md:ml-20 mb-20 p-4'>
-        <form onSubmit={handleNewParcel} className="max-w-2xl mr-auto">
-          <div className="grid md:grid-cols-2 gap-4 ">
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="tracking_id">Tracking ID</label>
-              <input
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="text" 
-                id="tracking_id" 
-                name="tracking_id"
-                disabled
-                placeholder="Auto Generated"/>
-            </div>
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="reciever_email">Receiver Email</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.RECIEVER_EMAIL, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="email" 
-                id="reciever_email" 
-                name="reciever_email" 
-                placeholder="Enter Receiver Email"
-                required/>
-            </div>
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="reciever_name">Receiver Name</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.RECIEVER_NAME, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="text" 
-                id="reciever_name" 
-                name="reciever_name" 
-                placeholder="Enter Receiver Name"
-                minLength={3}
-                maxLength={50}
-                required/>
-            </div>
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="vehicle_type">Vehicle Type</label>
-                <select
-                  onChange={(e)=>dispatch({type: parcelAction.VEHICLE_TYPE, payload: e.target.options[e.target.selectedIndex].value})} 
-                  className="w-full px-3 py-2 border border-gray-400 rounded"
-                  required>
-                  <option>Air</option>
-                  <option>Ship</option>
-                  <option selected>Bus</option>
-                </select>
-              {/* <input 
-                className="w-full px-3 py-2 border border-gray-400 rounded" type="text" id="vehicle_type" name="vehicle_type" placeholder="Enter Vehicle Type"/> */}
-            </div>
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="destination">Destination</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.DESTINATION, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="text" 
-                id="destination" 
-                name="destination" 
-                placeholder="Enter Destination"
-                required/>
-            </div>
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="reciever_address">Receiver Address</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.RECIEVER_ADDRESS, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="text" 
-                id="reciever_address" 
-                name="reciever_address" 
-                placeholder="Enter Receiver Address"
-                required/>
-            </div>
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="reciever_phone">Receiver Phone</label>
-              <input
-                onChange={(e)=>dispatch({type: parcelAction.RECIEVER_PHONE, payload: e.target.value})}  
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="tel" 
-                id="reciever_phone" 
-                name="reciever_phone" 
-                placeholder="Enter Receiver Phone"
-                required/>
-            </div>
-            </div>
-          <div className=' my-5'>
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="reciever_phone">Description</label>
-                <textarea
-                  onChange={(e)=>dispatch({type: parcelAction.DESCRIPTION, payload: e.target.value})} 
-                  cols={40} rows={10}>
-
-                </textarea>
-            </div>
-          </div> 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="route">Route</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.ROUTE, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="text" 
-                id="route" 
-                name="route" 
-                placeholder="Enter Route"
-                required/>
-            </div>
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="route">Sender Name</label>
-              <input
-                onChange={(e)=>dispatch({type: parcelAction.SENDER_NAME, payload: e.target.value})}  
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="text" 
-                id="sender_name" 
-                name="sender_name" 
-                placeholder="Enter Sender Name"
-                required/>
-            </div>
-            
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="route">Delivery Date</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.DELIVERY_DATE, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="datetime-local" 
-                id="sender_name" 
-                name="sender_name" 
-                required/>
-            </div>
-
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="route">Current Location</label>
-              <input
-                onChange={(e)=>dispatch({type: parcelAction.CURRENT_LOCATION, payload: e.target.value})}  
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="text" 
-                id="current_location" 
-                name="current_location" 
-                placeholder="Enter Parcel Location"
-                required/>
-            </div>
-            {/* <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="route">Delivery Date</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.RECIEVER_EMAIL, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="datetime-local" 
-                id="delivery_date" 
-                name="delivery_date" 
-                required/>
-            </div> */}
-              </div>
-              <button>Submit</button>
-        </form>
+    <div>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-6">
+  <div className="p-6 bg-white rounded-lg shadow-md">
+    <h2 className="text-2xl font-bold mb-4">Login</h2>
+    <form 
+        onSubmit={handleLogin} className="w-full">
+      <div className="mb-4">
+        <label htmlFor="email" className="block font-medium text-gray-700 mb-2">Email</label>
+        <input
+        onChange={(e)=>setEmail(e.target.value)}
+         
+         type="email" id="email" name="email" className="form-input w-full" placeholder="Email address" required />
       </div>
-    </LayoutNew>
+      <div className="mb-4">
+        <label htmlFor="password" className="block font-medium text-gray-700 mb-2">Password</label>
+        <input
+        onChange={(e)=>setPassword(e.target.value)}
+         type="password" id="password" name="password" className="form-input w-full" placeholder="Password" required />
+      </div>
+      <div className="mb-4">
+        <button type="submit" className="bg-blue text-white py-2 px-4 rounded hover:bg-blue-700">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<Congratulations
+                  lead={notification?.message} 
+                  show={successNotification} 
+                  sub={""}
+                  onClose={()=>setSuccessNotification(false)}
+                  />
+      <Error
+        lead={notification?.message} 
+        sub={notification?.data?.data} 
+        show={errorNotification} 
+        onClose={()=>setErrorNotification(false)} />
+
+    </div>
   )
 }
 
-export default Index
+export default Login
