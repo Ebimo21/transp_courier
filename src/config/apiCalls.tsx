@@ -1,6 +1,6 @@
 import axios from "axios";
-// const host = "https://node.tradefactory.net/";
-const host = "http://localhost:3001/";
+const host = "https://node.tradefactory.net/";
+// const host = "http://localhost:3001/";
 
 type loginDetails = {
     email: string,
