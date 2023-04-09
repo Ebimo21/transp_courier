@@ -14,7 +14,6 @@ const Index = (props: Props) => {
 
   React.useEffect(() => {
     console.log(isUserAuthenticated());
-    // checks if the user is authenticated
     !isUserAuthenticated()
     ? router.push("/admin/login"): ""
   }, []);
@@ -255,20 +254,8 @@ const Index = (props: Props) => {
                 placeholder="Enter Parcel Location"
                 required/>
             </div>
-            {/* <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="route">Delivery Date</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.RECIEVER_EMAIL, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="datetime-local" 
-                id="delivery_date" 
-                name="delivery_date" 
-                required/>
-            </div> */}
               </div>
-              <button>Submit</button>
+              <button className='bg-blue text-white px-3 py-2 mt-4'>Submit</button>
         </form>
       </div>
     </LayoutNew>

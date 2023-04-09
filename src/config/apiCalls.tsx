@@ -1,6 +1,6 @@
 import axios from "axios";
-const host = "https://node.tradefactory.net/";
-// const host = "http://localhost:3001/";
+// const host = "https://node.tradefactory.net/";
+const host = "http://localhost:3001/";
 
 type loginDetails = {
     email: string,
@@ -63,6 +63,20 @@ export const deleteParcelDetails = async (tracking_id:string|undefined|null)=>{
         console.log(err.message);
         return {success: false, message: err.message};
 
+    }
+}
+
+export const sendMail = async (email:string, subject:string, body:string, user:string, title:string)=>{
+    try {
+        const response = await axios.post(
+            `${host}send/mail`,
+            { data: {
+                email, subject, body, user,
+            }}
+        )
+        return {success: true, message: response.data.message};
+    }catch(err:any) {
+        return {success: false, message: err.message}
     }
 }
 

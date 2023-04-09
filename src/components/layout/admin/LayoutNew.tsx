@@ -35,7 +35,7 @@ const LayoutNew = ({children}: Props) => {
             </div>
         </div>
         {menuOpen && (
-            <div className="lg:hidden absolute w-full bg-white">
+            <div className="lg:hidden absolute w-full bg-slate-600">
             <div className="mt-2 px-2 pt-2 pb-3">
                 <Link href={'/admin'}>
                     <span className="block px-3 py-2 rounded text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</span>
