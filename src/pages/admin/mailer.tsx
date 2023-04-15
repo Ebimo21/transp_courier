@@ -2,7 +2,9 @@ import Congratulations from '@/components/admin/adminModal/Congratulations';
 import Error from '@/components/admin/adminModal/Error';
 import LayoutNew from '@/components/layout/admin/LayoutNew'
 import { sendMail } from '@/config/apiCalls';
+import { useAuthContext } from '@/context/authContext';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import React, {useState} from 'react'
 
 
@@ -13,6 +15,10 @@ const QuillNoSSRWrapper = dynamic(import('react-quill'), {
     loading: () => <p>Loading ...</p>,
     })
 const Mailer = (props: Props) => {
+
+      const router = useRouter();
+
+
     const [successNotification, setSuccessNotification] = useState<Boolean>(false);
     const [errorNotification, setErrorNotification] = useState<Boolean>(false);
     const [notification, setNotification] = useState<notify>();
@@ -32,6 +38,16 @@ const Mailer = (props: Props) => {
             setErrorNotification(prev=>true);
         }
     }
+
+
+  const {isUserAuthenticated} = useAuthContext()
+
+
+    React.useEffect(() => {
+        console.log(isUserAuthenticated());
+        !isUserAuthenticated()
+        ? router.push("/admin/login"): ""
+      }, []);
   return (
     <LayoutNew>
         <div className='p-3'>

@@ -25,18 +25,14 @@ function Track() {
             sender_name: null,
             delivery_date: null,
             current_location: null,
-
-            
-
         }
-    ]
-    const [parcel, setParcel] = useState(parcelInitial)
-
+    ];
+    const [parcel, setParcel] = useState(parcelInitial);
     const [tracking_id, setTracking_Id] = useState("");
+    
     const handleTrackParcel = async(e:any)=>{
         e.preventDefault()
         const response = await getParcel(tracking_id);
-        // console.log(response);
         setParcel(response?.data)
     }
 

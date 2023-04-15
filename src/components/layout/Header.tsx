@@ -49,7 +49,7 @@ const Header = () => {
 					</div>
 				</div>
 			</div>
-			<div className={`${show? 'hidden': 'absolute bg-white w-full p-5 text-lg'} mobile-menu`}>
+			<div className={`${show? 'hidden': 'absolute z-10 bg-white w-full p-5 text-lg'} mobile-menu`}>
 				<ul className="">
 					<li><Link href="/" className="block px-2 py-4 hover:bg-lightBlue hover:text-white transition duration-300 border-blue font-semibold ">Home</Link></li>
 					<li><Link href="/about" className="block px-2 py-4 hover:bg-lightBlue text-blue hover:text-white transition duration-300 border-blue font-semibold ">About Us</Link></li>

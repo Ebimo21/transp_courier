@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import {getParcel} from "../../../config/apiCalls"
 import { useEffect, useState } from "react";
+import { useAuthContext } from '@/context/authContext';
+
 
 const Parcel = () =>{
 
@@ -9,6 +11,15 @@ const Parcel = () =>{
     const isReady = router.isReady;
     console.log(tracking_id);
     const [parcel, setParcel] = useState()
+
+
+    const {isUserAuthenticated} = useAuthContext()
+
+    useEffect(() => {
+      console.log(isUserAuthenticated());
+      !isUserAuthenticated()
+      ? router.push("/admin/login"): ""
+    }, []);
 
     useEffect(() => {
         async function getSingleParcel(){

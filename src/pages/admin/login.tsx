@@ -1,7 +1,6 @@
 import Congratulations from '@/components/admin/adminModal/Congratulations'
 import Error from '@/components/admin/adminModal/Error'
 import { loginAdmin } from '@/config/apiCalls'
-import { useAuthContext } from '@/context/authContext'
 import { useRouter } from 'next/router'
 import React, {useState, useContext} from 'react'
 
@@ -10,7 +9,6 @@ type Props = {}
 
 const Login = (props: Props) => {
     const router = useRouter();
-    const {setAuthState } = useAuthContext()
 
     const [successNotification, setSuccessNotification] = useState<Boolean>(false)
     const [errorNotification, setErrorNotification] = useState<Boolean>(false)
@@ -24,11 +22,12 @@ const Login = (props: Props) => {
         const response = await loginAdmin({email, password});
         if(response.success){
             setSuccessNotification(prev=>true);
-            setAuthState({data: "admin"})
-            router.push('/admin')
+            setTimeout(()=>{
+              router.push('/admin')
+              
+            }, 3000)
         }else{
             setErrorNotification(prev=>true);
-            setAuthState({data: ""})
         }
         setNotification(response);
     }

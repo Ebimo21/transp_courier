@@ -1,36 +1,46 @@
 import React from 'react'
 import { AiOutlineCheck } from 'react-icons/ai'
-import { BsArrowRight } from 'react-icons/bs'
+import { BsArrowRight } from 'react-icons/bs';
+import { useInView } from 'react-intersection-observer';
 
 type Props = {}
 
 const WhyChooseUs = (props: Props) => {
+    const [lead, leadView] = useInView({triggerOnce: true});
+    const [p, pView] = useInView({delay: 1200, triggerOnce: true});
+    const [sub, subView] = useInView({delay: 400, triggerOnce: true});
+    const [cardOne, cardOneView] = useInView({triggerOnce: true, delay: 400});
+    const [cardTwo, cardTwoView] = useInView({triggerOnce: true, delay: 600});
+    const [cardThree, cardThreeView] = useInView({triggerOnce: true, delay: 800});
+    const [cardFour, cardFourView] = useInView({triggerOnce: true, delay: 1000});
+    const [item, itemView] = useInView({triggerOnce: true});
+
   return (
     <div className=''>
         <div className='flex flex-wrap gap-10 lg:gap-2 px-2 lg:px-10 py-10 justify-center items-center semibold max-w-[1250px] m-auto' >
             <div className='basis-full grow flex flex-wrap lg:basis-5/12 text-center gap-4 justify-center'>
-                <div className='basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features'>
+                <div ref={cardOne} className={`basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features opacity-0 ${cardOneView? "slide-top":""}`}>
                     <img width={80} className='block m-auto' src='./images/Shipping.png'  />
                     <h4 className='text-lightBlue my-3 text-xs lg:text-sm hover:text-yellow font-bold'>Shipping Options</h4>
                     {/* <p className='font-normal  text-[8px] lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
                     </p> */}
                 </div>
-                <div className='basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features lg:translate-y-8'>
+                <div ref={cardTwo} className={`basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features lg:translate-y-8 opacity-0 ${cardTwoView? "slide-top":""}`}>
                     <img width={80} className='block m-auto' src='./images/Deliveries.png'  />
                     <h4 className='text-lightBlue my-3 text-xs lg:text-sm hover:text-yellow font-bold'>Timely Deliveries</h4>
                     {/* <p className='font-normal  text-[8px] lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
                     </p> */}
                 </div>
-                <div className='basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features'>
+                <div ref={cardThree} className={`basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features opacity-0 ${cardThreeView? "slide-top":""}`}>
                     <img width={80} className='block m-auto' src='./images/Customer_Service.png'  />
                     <h4 className='text-lightBlue my-3 text-xs lg:text-sm hover:text-yellow font-bold'>Customer Service</h4>
                     {/* <p className='font-normal leading-5 lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Quisque commodo consecteter.
                     </p> */}
                 </div>
-                <div className='basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features lg:translate-y-8'>
+                <div ref={cardFour} className={`basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features lg:translate-y-8 opacity-0 ${cardFourView? "slide-top":""}`}>
                     <img width={80} className='block m-auto' src='./images/Tracking_System.png'  />
                     <h4 className='text-lightBlue my-3 text-xs lg:text-sm hover:text-yellow font-bold'>Tracking Systems</h4>
                     {/* <p className='font-normal leading-5 lg:text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -39,15 +49,15 @@ const WhyChooseUs = (props: Props) => {
                 </div>
             </div>
             <div className='basis-full lg:basis-6/12 px-6 lg:max-w-[500px] '>
-                <span className='bg-yellow px-2 text-xs font-bold py-1'>Our Features</span>
-                <h3 className='text-lightBlue text-2xl font-bold  mt-4'>Why Choose Us</h3>
-                <p className='text-light mt-4 text-base text-lightBlue'>Sustainability is an increasingly important factor for many customers when
+                <span ref={sub} className={`bg-yellow px-2 text-xs font-bold py-1  opacity-0 ${subView? "slide-top":""}`}>Our Features</span>
+                <h3 ref={lead} className={`text-lightBlue text-2xl font-bold  mt-4 opacity-0 ${leadView? "slide-top":""}`}>Why Choose Us</h3>
+                <p ref={p} className={`text-light mt-4 text-base text-lightBlue opacity-0 ${pView? "slide-top":""}`}>Sustainability is an increasingly important factor for many customers when
                     choosing a shipping company. Your shipping company can stand out by demonstrating
                     a commitment to sustainable practices, such as using energy-efficient vehicles,
                     reducing waste and offsetting carbon emissions.
                 </p>
 
-                <div className='mt-5 flex text-sm  lg:text-xs flex-wrap gap-5'>
+                <div ref={item} className={`mt-5 flex text-sm  lg:text-xs flex-wrap gap-5 opacity-0 ${itemView? "slide-top":""}`}>
                         <div className='flex flex-col gap-3'>
                             <span className='flex items-center gap-3 text-blue font-medium'>
                                 <span className='bg-yellow inline-block rounded-full'>

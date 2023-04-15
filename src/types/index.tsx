@@ -15,6 +15,11 @@ interface newParcel {
     delivery_date: string,
 }
 
+type svg ={
+  width: number,
+  height: number
+}
+
 type notify ={
     message?: string,
     success: Boolean,

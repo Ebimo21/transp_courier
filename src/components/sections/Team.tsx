@@ -1,10 +1,20 @@
 import Link from 'next/link'
 import React from 'react'
-import { BsFacebook, BsInstagram, BsTwitter } from 'react-icons/bs'
+import { BsFacebook, BsInstagram, BsTwitter } from 'react-icons/bs';
+import { useInView } from 'react-intersection-observer';
 
 type Props = {}
 
 const Team = (props: Props) => {
+
+    const [lead, leadView] = useInView({triggerOnce: true});
+    const [p, pView] = useInView({delay: 1200, triggerOnce: true});
+    const [sub, subView] = useInView({delay: 400, triggerOnce: true});
+    const [cardOne, cardOneView] = useInView({triggerOnce: true, delay: 400})
+    const [cardTwo, cardTwoView] = useInView({triggerOnce: true, delay: 600})
+    const [cardThree, cardThreeView] = useInView({triggerOnce: true, delay: 800})
+    const [cardFour, cardFourView] = useInView({triggerOnce: true, delay: 1000})
+
     type Team ={
         name: String,
         role: String,
@@ -15,6 +25,9 @@ const Team = (props: Props) => {
         },
         img: string,
         alt: string,
+        card: ((node?: Element | null) => void),
+        ref: boolean
+        
     } 
     const team: Team[]=  [
         {
@@ -27,6 +40,8 @@ const Team = (props: Props) => {
             },
             img: "./images/Partners.jpg",
             alt: "team",
+            card: cardOne,
+            ref: cardOneView,
         },
         {
             name: "Devon Lane",
@@ -38,6 +53,8 @@ const Team = (props: Props) => {
             },
             img: "./images/Partners.jpg",
             alt: "team",
+            card: cardTwo,
+            ref: cardTwoView,
         },
         {
             name: "Devon Lane",
@@ -49,6 +66,8 @@ const Team = (props: Props) => {
             },
             img: "./images/Partners.jpg",
             alt: "team",
+            card: cardThree,
+            ref: cardThreeView
         },
         {
             name: "Devon Lane",
@@ -60,6 +79,8 @@ const Team = (props: Props) => {
             },
             img: "./images/Partners.jpg",
             alt: "team",
+            card: cardFour,
+            ref: cardFourView,
         },
         
     ]
@@ -71,7 +92,7 @@ const Team = (props: Props) => {
             <div className='flex flex-wrap justify-center gap-2 mt-5'>
                 {team.map((item, index)=>{
                     return (
-                        <div className='max-w-[288px] basis-12/12' key={index}>
+                        <div ref={item.card} className={`max-w-[288px] basis-12/12 opacity-0 ${item.ref? "slide-top":""}`} key={index}>
                             <img src={item.img} alt={item.alt} />
                             <div className='bg-white -translate-y-10 w-5/6 justify-between rounded-sm flex items-end p-3  m-auto'>
                                 <div>

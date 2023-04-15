@@ -1,4 +1,5 @@
 import axios from "axios";
+const jscookie = require("jscookie");
 const host = "https://node.tradefactory.net/";
 // const host = "http://localhost:3001/";
 
@@ -89,6 +90,11 @@ export const loginAdmin = async ({email, password}:loginDetails)=>{
             },
             
         )
+
+        jscookie.set({
+            name: "user",
+            value: "ADMIN",
+        })
         
         return response.data
     }catch(err:any){
