@@ -1,74 +1,89 @@
-import React, { Dispatch, FormEvent, RefObject, useEffect, useState } from 'react';
-import {getParcel} from "../../../config/apiCalls"
+import React, { useReducer, FormEvent, RefObject, useEffect, useState } from 'react';
+import {addNewParcel, getParcel} from "../../../config/apiCalls"
 
 type dispatchType ={
     type: string,
     payload: string,
 }
 type Props = {
-    handleParcelUpdate: (e: FormEvent, func: (e:FormEvent)=>void)=>void,
-    dispatch: ({type, payload}: dispatchType)=> void,
-    parcelAction: parcelAction,
-    id: string,
-    formElement: RefObject<HTMLFormElement>,
-    handleCallbackUpdate: (e:FormEvent)=>void,
     show: Boolean,
-    onClose: ()=>void,
-    state: Object,
+    onClose: ()=>void,    
 }
 
 
 
-const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, formElement, handleCallbackUpdate, show, onClose}: Props) => {
-  const [parcel, setParcel] = useState<newParcel>()
+const AddParcel = ({show, onClose}: Props) => {
+  const [parcel, setParcel] = useState<newParcel>();
+
+  const parcelAction =  {
+    RECIEVER_EMAIL: "reciever_email",
+    RECIEVER_NAME: "reciever_name",
+    VEHICLE_TYPE: "vehicle_type",
+    DESTINATION: "destination",
+    RECIEVER_ADDRESS: "reciever_address",
+    RECIEVER_PHONE: "reiever_phone",
+    DESCRIPTION: "description",
+    ROUTE: "route",
+    SENDER_NAME: "sender_name",
+    DELIVERY_DATE: "delivery_date",
+    CURRENT_LOCATION: "current_location",
+  }
+
+    const initial:newParcel ={
+        reciever_email: "",
+        reciever_name: "",
+        vehicle_type: "",
+        destination: "",
+        reciever_address: "",
+        reciever_phone: 0,
+        description: "",
+        route: 0,
+        sender_name: "",
+        delivery_date: "",
+        current_location: "",
+      }
     
-    useEffect(()=>{
-        const getParcelDetails = async() =>{
-            const response = await getParcel(id) 
-            setParcel(response.data[0])
+      const reducer = (state:any, action:any) =>{
+        const {type, payload} = action;
+        // console.log(action);
+        switch(type){
+          case parcelAction.RECIEVER_EMAIL:
+            return {...state, reciever_email: payload};
+          case parcelAction.RECIEVER_NAME:
+            return {...state, reciever_name: payload};
+          case parcelAction.VEHICLE_TYPE:
+            return {...state, vehicle_type: payload};
+          case parcelAction.DESTINATION:
+            return {...state, destination: payload};
+          case parcelAction.RECIEVER_ADDRESS:
+            return {...state, reciever_address: payload};
+          case parcelAction.RECIEVER_PHONE:
+            return {...state, reciever_phone: payload};
+          case parcelAction.DESCRIPTION:
+            return {...state, description: payload};
+          case parcelAction.ROUTE:
+            return {...state, route: payload}
+          case parcelAction.SENDER_NAME:
+            return {...state, sender_name: payload};
+          case parcelAction.DELIVERY_DATE:
+            return {...state, delivery_date: payload};
+          case parcelAction.CURRENT_LOCATION:
+            return {...state, current_location: payload}
+          default:
+            return state;
         }
-        console.log(id);
-
-        getParcelDetails()
-    },[id])
-    useEffect(()=>{
-        console.log(state);
-    },[state])
-
-    useEffect(()=>{
-      console.log(state);
-        const updateState =()=>{
-          const el = formElement?.current?.elements as HTMLFormControlsCollection;
-          //  ("count");
-          
-          for (let i = 0; i < el?.length; i++) {
-            const control = el[i] as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-            if (control !instanceof HTMLSelectElement) {
-              // Use a type guard to determine whether the control is an HTMLSelectElement
-              dispatch({ type: control?.name, payload: control?.value });
-               (control.name);
-              // formData[control.name] = control.defaultValue;
-            } else {
-               (control.name);
-              // For all other controls, use the value property
-              //  (control.defaultValue);
-              dispatch({ type: control?.name, payload: control?.defaultValue });
-              // formData[control.name] = control.value;
-            }
-          }
-          
-
         
-            // for(let i=0; i<el?.length; i++){
-            //   const control = el[i] as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-            //   dispatch({ type: control.name, payload: control?.defaultValue });
-            // }
+      }
 
-                // dispatch({type: el[i]?.name, payload: el[i].defaultValue})
-        }
+  const [newParcel, dispatch] = useReducer(reducer, initial)
 
-        updateState()
-    }, [parcel])
+
+    const handleNewParcel = async(e: any)=>{
+        e.preventDefault()
+        // console.log(newParcel);
+        await addNewParcel(newParcel);
+    
+      }
     
     if(!show) {return null}
   return (
@@ -77,10 +92,10 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
         <div 
             onClick={e => e.stopPropagation()}
             className='bg-[#fefefe] overflow-auto h-[50vh] mx-auto rounded-lg my-[1%] max-w-sm md:max-w-[700px] p-5 md:px-20 border-none outline-none'>
-            <h3 className='font-bold  mb-2'>Edit offer</h3>
+            <h3 className='font-bold  mb-2'>Add offer</h3>
             {/* <p className='text-sm'>Enter the details on the offer you are creating below</p> */}
 
-        <form onSubmit={(e)=>handleParcelUpdate(e, handleCallbackUpdate)} ref={formElement} className="max-w-2xl mr-auto">
+            <form onSubmit={handleNewParcel} className="max-w-2xl mr-auto">
           <div className="grid md:grid-cols-2 gap-4 ">
             <div>
               <label 
@@ -92,30 +107,7 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 id="tracking_id" 
                 name="tracking_id"
                 disabled
-                defaultValue={parcel?.Tracking_id}
                 placeholder="Auto Generated"/>
-            </div>
-            <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="vehicle_type">Status</label>
-                <select
-                  name='status'
-                  id='status'
-                  onChange={(e)=>dispatch({type: parcelAction.STATUS, payload: e.target.options[e.target.selectedIndex].value})} 
-                  className="w-full px-3 py-2 border border-gray-400 rounded"
-                  required
-                  defaultValue={parcel?.status}
-                >
-                  <option selected={parcel?.vehicle_type == "Pending"}>Pending</option>
-                  <option selected={parcel?.vehicle_type == "Waiting"}>Waiting</option>
-                  <option selected={parcel?.vehicle_type == "Hold"}>Hold</option>
-                  <option selected={parcel?.vehicle_type == "Transit"}>Transit</option>
-                  <option selected={parcel?.vehicle_type == "Failure"}>Failure</option>
-
-                </select>
-              {/* <input 
-                className="w-full px-3 py-2 border border-gray-400 rounded" type="text" id="vehicle_type" name="vehicle_type" placeholder="Enter Vehicle Type"/> */}
             </div>
             <div>
               <label 
@@ -128,8 +120,6 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 id="reciever_email" 
                 name="reciever_email" 
                 placeholder="Enter Receiver Email"
-                defaultValue={parcel?.reciever_email}
-
                 required/>
             </div>
             <div>
@@ -145,31 +135,23 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 placeholder="Enter Receiver Name"
                 minLength={3}
                 maxLength={50}
-                required
-                defaultValue={parcel?.reciever_name}
-                />
+                required/>
             </div>
             <div>
               <label 
                 className="block mb-2 font-bold" 
                 htmlFor="vehicle_type">Vehicle Type</label>
                 <select
-                  name='vehicle_type'
-                  id='vehicle_type'
                   onChange={(e)=>dispatch({type: parcelAction.VEHICLE_TYPE, payload: e.target.options[e.target.selectedIndex].value})} 
                   className="w-full px-3 py-2 border border-gray-400 rounded"
-                  required
-                  defaultValue={parcel?.vehicle_type}
-                >
-                  <option defaultValue={parcel?.vehicle_type == "Air"? "Air": ""}>Air</option>
-                  <option defaultValue={parcel?.vehicle_type == "Ship"? "Ship": ""}>Ship</option>
-                  <option defaultValue={parcel?.vehicle_type == "Bus"? "Bus": ""}>Bus</option>
-
+                  required>
+                  <option>Air</option>
+                  <option>Ship</option>
+                  <option selected>Bus</option>
                 </select>
               {/* <input 
                 className="w-full px-3 py-2 border border-gray-400 rounded" type="text" id="vehicle_type" name="vehicle_type" placeholder="Enter Vehicle Type"/> */}
             </div>
-            
             <div>
               <label 
                 className="block mb-2 font-bold" 
@@ -181,9 +163,7 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 id="destination" 
                 name="destination" 
                 placeholder="Enter Destination"
-                required
-                defaultValue={parcel?.destination}
-                />
+                required/>
             </div>
             <div>
               <label 
@@ -196,8 +176,6 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 id="reciever_address" 
                 name="reciever_address" 
                 placeholder="Enter Receiver Address"
-                defaultValue={parcel?.reciever_address}
-
                 required/>
             </div>
             <div>
@@ -211,7 +189,6 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 id="reciever_phone" 
                 name="reciever_phone" 
                 placeholder="Enter Receiver Phone"
-                defaultValue={parcel?.reciever_phone}
                 required/>
             </div>
             </div>
@@ -221,9 +198,7 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 className="block mb-2 font-bold" 
                 htmlFor="reciever_phone">Description</label>
                 <textarea
-                  name='description'
-                  id='description'
-                  defaultValue={parcel?.description}
+                  className='w-full px-3 py-2 border border-gray-400 rounded'
                   onChange={(e)=>dispatch({type: parcelAction.DESCRIPTION, payload: e.target.value})} 
                   cols={40} rows={10}>
 
@@ -236,7 +211,6 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 className="block mb-2 font-bold" 
                 htmlFor="route">Route</label>
               <input 
-                defaultValue={parcel?.route}
                 onChange={(e)=>dispatch({type: parcelAction.ROUTE, payload: e.target.value})} 
                 className="w-full px-3 py-2 border border-gray-400 rounded" 
                 type="text" 
@@ -250,7 +224,6 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 className="block mb-2 font-bold" 
                 htmlFor="route">Sender Name</label>
               <input
-                defaultValue={parcel?.sender_name}
                 onChange={(e)=>dispatch({type: parcelAction.SENDER_NAME, payload: e.target.value})}  
                 className="w-full px-3 py-2 border border-gray-400 rounded" 
                 type="text" 
@@ -268,11 +241,9 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 onChange={(e)=>dispatch({type: parcelAction.DELIVERY_DATE, payload: e.target.value})} 
                 className="w-full px-3 py-2 border border-gray-400 rounded" 
                 type="datetime-local" 
-                id="delivery_date" 
-                name="delivery_date" 
-                required
-                defaultValue={parcel?.delivery_date.slice(0, -5).replace(/[T]/, " ")}
-                />
+                id="sender_name" 
+                name="sender_name" 
+                required/>
             </div>
 
             <div>
@@ -286,24 +257,10 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 id="current_location" 
                 name="current_location" 
                 placeholder="Enter Parcel Location"
-                required
-                defaultValue={parcel?.current_location}
-                />
-            </div>
-            {/* <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="route">Delivery Date</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.RECIEVER_EMAIL, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="datetime-local" 
-                id="delivery_date" 
-                name="delivery_date" 
                 required/>
-            </div> */}
+            </div>
               </div>
-              <button defaultValue={"submit"}>Submit</button>
+              <button className='bg-blue text-white px-3 py-2 mt-4'>Submit</button>
         </form>
         </div>
     </div>
@@ -311,4 +268,4 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
   )
 }
 
-export default EditParcel
+export default AddParcel

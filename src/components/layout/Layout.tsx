@@ -18,9 +18,11 @@ const styles = {
 const Layout = ({children}:Props) => {
   return (
     <>
-        <Header />
-        {children}
-        <Footer/>
+        <div data-theme="light">
+          <Header />
+          {children}
+          <Footer/>
+        </div>
     </>
   )
 }

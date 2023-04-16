@@ -15,7 +15,7 @@ function Congratulations({lead, sub, show, onClose}: Props) {
   return (
     <div 
       onClick={onClose} 
-      className='flex justify-center items-center fixed top-0 left-0 w-full h-screen z-10 bg-[rgba(0,0,0,0.4)] text-center'>
+      className='flex justify-center items-center fixed top-0 left-0 w-full h-screen z-20 bg-[rgba(0,0,0,0.4)] text-center'>
         <div 
           onClick={e => e.stopPropagation()} 
           className='bg-[#fefefe] mx-auto rounded-lg my-[5%] m max-w-xs md:max-w-[500px] p-5 border-none outline-none'>

@@ -10,7 +10,7 @@ type Props = {
 const LayoutNew = ({children}: Props) => {
     const [menuOpen, setMenuOpen] = useState(false)
   return (
-    <div className=''>
+    <div data-theme="light" className=''>
         <div className="flex justify-between bg-slate-200 text-slate-900">
             <div className="flex basis-full justify-between p-4 items-center">
                 <h2 className='text-2xl font-semibold'>Dashboard</h2>

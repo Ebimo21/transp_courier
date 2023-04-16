@@ -1,8 +1,12 @@
+import AddParcel from '@/components/admin/adminModal/AddParcel';
 import ConfirmDelete from '@/components/admin/adminModal/ConfirmDelete';
 import Congratulations from '@/components/admin/adminModal/Congratulations';
 import EditParcel from '@/components/admin/adminModal/EditParcel';
 import Error from '@/components/admin/adminModal/Error';
 import { Add } from '@/components/iconify/Add';
+import ArrowLeft from '@/components/iconify/ArrowLeftLT';
+import ArrowRight from '@/components/iconify/ArrowRight';
+import { ArrowRightGT } from '@/components/iconify/ArrowRightGT';
 import Delete from '@/components/iconify/Delete';
 import EditBox from '@/components/iconify/EditBox';
 import Layout from '@/components/layout/admin/Layout';
@@ -37,8 +41,14 @@ const Index = (props: Props) => {
 
 
   const [successNotification, setSuccessNotification] = useState<Boolean>(false)
-    const [errorNotification, setErrorNotification] = useState<Boolean>(false)
-    const [notification, setNotification] = useState<notify>()
+  const [errorNotification, setErrorNotification] = useState<Boolean>(false)
+  const [notification, setNotification] = useState<notify>()
+
+  const [addNewParcel, setAddNewParcel] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
 
   const handleParcelUpdate = (e: FormEvent, callback: (e:FormEvent)=>void)=>{
     e.preventDefault();
@@ -147,28 +157,65 @@ setRefresh(prev=>!prev)
 
 }
 
-const [parcelEdit, dispatch] = useReducer(reducer, initial)
+const [parcelEdit, dispatch] = useReducer(reducer, initial);
+
+const handleSelectRows = async (e:any) =>{
+
+  const row = e.target.value;
+  setRowsPerPage(row);
+  const response = await getAllParcels(page, row);
+  setParcels(response.data.row)
+
+}
+
+const handleGetNextPage = async() =>{
+  setPage(page=>page+1)
+  console.log(page);
+  const response = await getAllParcels(page+1, rowsPerPage);
+  setParcels(response.data.row);
+  console.log(roundToNearestWhole);
+}
+
+const handleGetPreviousPage = async() =>{
+  console.log(page);
+  if(page>1){
+    setPage(page=>page-1)
+    const response = await getAllParcels(page-1, rowsPerPage);
+    setParcels(response.data.row);
+  }
+  console.log(page);
+  console.log(roundToNearestWhole);
+}
+
+const roundToNearestWhole = (num:number) =>{
+  return Math.ceil(num/10) * rowsPerPage
+}
 
 
   useEffect(()=>{
     const getParcels = async () =>{
       const response = await getAllParcels(1);
-      setParcels(response.data);
+      setParcels(response.data.row);
+      setTotalPages(response.data.total)
     }
     getParcels();
   }, [refresh]);
+
+
   return (
       <LayoutNew>
         <div>
           <div className='flex items-center justify-between p-2'>
             <span>Parcels</span>
-            <Link href="/admin/add-parcel">
-              <Add  width={30} height={30}/>
-            </Link>
+              <span onClick={()=>setAddNewParcel(true)}>
+                <Add width={30} height={30}/>
+              </span>
+            {/* <Link href="/admin/add-parcel">
+            </Link> */}
             
           </div>
-        <div className='overflow-auto text-left shadow  whitespace-nowrap'>
-          <table className='overflow-auto max-w-[200px]'>
+        <div className='overflow-x-auto'>
+          <table className='table table-compact w-full'>
             <thead>
               <tr className=' bg-[#e1dddd] text-slate-500 '>
                 <th className='w-10 p-3'>S/N</th>
@@ -194,9 +241,9 @@ const [parcelEdit, dispatch] = useReducer(reducer, initial)
                   <tr
                     className={`p-2 ${index % 2 === 0 ? "bg-slate-200": "bg-slate-100" } `}
                     key={index}>
-                    <td className='p-3 w-10'>{index + 1}</td>
+                    <th className='p-3 w-10'>{index + 1}</th>
                     <td className='p-3 w-20'>{/*<Link href={`/admin/parcel/${item?.Tracking_id}`}*/}<span>{item?.Tracking_id}</span></td>
-                    <td className='p-3 w-20'>{item?.status}</td>
+                    <td className='p-3 w-20'><span className={`w-full px-3 py-4 badge ${item?.status?.toLowerCase() ==="pending"?"badge-accent": item?.status?.toLowerCase() === "transit"? "badge-info":""}`}>{item?.status}</span></td>
                     <td className='p-3 w-20'>{item?.current_location}</td>
                     <td className='p-3 w-20'>{item?.reciever_name}</td>
                     <td className='p-3 w-20'>{item?.destination}</td>
@@ -207,21 +254,64 @@ const [parcelEdit, dispatch] = useReducer(reducer, initial)
                     <td className='p-3 w-20'>{item?.sender_name}</td>
                     <td className='p-3 w-20'>{item?.route}</td>
                     <td className='p-3 w-20'>{item?.description}</td>
-                    <td className='p-3 w-20'>{item?.delivery_date}</td>
+                    <td className='p-3 w-20'>{item?.delivery_date.slice(0,-8).replace(/[T]/, " ")}</td>
                     <td className='p-3 w-20 flex items-center gap-2'> 
-                      <span 
+                      <span className='cursor-pointer' 
                         onClick={(e)=>{setEditParcelModal(prev=> !prev); setParcelId(item?.Tracking_id ?? ""); console.log(parcelId);}} >
                           <EditBox fill='#1f29e1' />
                           </span>
 
-                      <span onClick={()=>{setItemToDelete(item?.Tracking_id ?? null); setDeleteModal(prev=>!prev)}}><Delete fill="#eb3c3c"/></span>
+                      <span className='cursor-pointer' onClick={()=>{setItemToDelete(item?.Tracking_id ?? null); setDeleteModal(prev=>!prev)}}><Delete fill="#eb3c3c"/></span>
                       </td>
                 </tr>
                 )
               })}
             </tbody>
+            <tfoot>
+              <tr className=' bg-[#e1dddd] text-slate-500 '>
+                <th className='w-10 p-3'>S/N</th>
+                <th className='w-20 p-3'>Tracking ID</th>
+                <th className='w-20 p-3'>Status</th>
+                <th className='w-20 p-3'>Current Location</th>
+                <th className='w-20 p-3'>Reciever Name</th>
+                <th className='w-20 p-3'>Destination</th>
+                <th className='w-20 p-3'>Reciever Phone</th>
+                <th className='w-20 p-3 whitespace-nowraps'>Vehicle Type</th>
+                <th className='w-20 p-3'>Reciever Address</th>
+                <th className='w-20 p-3'>Reciever Email</th>
+                <th className='w-20 p-3'>Sender Name</th>
+                <th className='w-20 p-3'>Route</th>
+                <th className='w-20 p-3'>Description</th>
+                <th className='w-20 p-3'>Delivery Date</th>
+                <th className='w-20 p-3'>Action</th>
+              </tr>
+            </tfoot>
           </table>
         </div>
+          <div className='flex gap-3 p-4 items-center text-sm'>
+                <div className='flex gap-1 items-center'>
+                    <span>Rows per page:</span>
+                    <select onChange={handleSelectRows} className='p-1'>
+                        <option value={10}>10</option>
+                        <option value={25}>25</option>
+                        <option value={50}>50</option>
+                    </select>
+                </div>
+                <div className=' flex items-center'>
+                    <span><span className=''>{page}</span> of {Math.ceil(totalPages/rowsPerPage)}</span>
+                </div>
+                <div className=' flex items-center gap-2'>
+                    <button disabled={page<2} onClick={handleGetPreviousPage} className='px-3 cursor-pointer btn'>
+                        <ArrowLeft width={18} height={18} />
+                    </button>
+                    <button disabled={page >= Math.ceil(totalPages/rowsPerPage) } onClick={handleGetNextPage} className='px-3 cursor-pointer btn'>
+                        <ArrowRightGT width={18} height={18} />
+                    </button>
+                </div>
+            </div>
+          
+
+        {addNewParcel && <AddParcel show={addNewParcel} onClose={()=>setAddNewParcel(false)} />}
 
         {editParcelModal && <EditParcel 
           handleParcelUpdate={handleParcelUpdate}
@@ -250,6 +340,7 @@ const [parcelEdit, dispatch] = useReducer(reducer, initial)
         show={errorNotification} 
         onClose={()=>setErrorNotification(false)} />
         </div>
+
       </LayoutNew>
 
       

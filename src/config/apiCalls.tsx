@@ -143,12 +143,14 @@ export const addNewParcel = async(formdata:newParcel)=>{
 
 }
 
-export const getAllParcels = async (page:number) =>{
+export const getAllParcels = async (page:number=1, size:number=10) =>{
     try {
         const response = await axios.get(
-            `${host}parcels/${page}`,
+            `${host}parcels`,
             {
-
+                params: {
+                    page, size
+                }
             },
         )
         console.log(response);
