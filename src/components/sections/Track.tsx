@@ -34,6 +34,7 @@ function Track() {
         e.preventDefault()
         const response = await getParcel(tracking_id);
         setParcel(response?.data)
+        console.log(response?.data ?"true": "false" );
     }
 
   return (
@@ -64,6 +65,7 @@ function Track() {
         <div className='mb-20'>
         <div className='overflow-y-auto m-auto h-[300px]'>
            {parcel && <table className='w-screen max-w-5xl font-medium text-left text-sm text-slate-500 '>
+                {parcel.length <1 && (<p className='text-center'>Parcel not found</p>)}
                 <thead>
                     <tr className='p-2 bg-[#F1F1F1] text-slate-700'>
                         <th className=' p-4 '>Name</th>

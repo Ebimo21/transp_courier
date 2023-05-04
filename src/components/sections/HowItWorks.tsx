@@ -1,3 +1,4 @@
+import useWhenInView from '@/hooks/useWhenInView';
 import React from 'react'
 import {BsArrowRight} from "react-icons/bs"
 import { useInView } from 'react-intersection-observer'
@@ -5,13 +6,10 @@ import { useInView } from 'react-intersection-observer'
 type Props = {}
 
 function HowItWorks({}: Props) {
-    const [lead, leadView] = useInView({triggerOnce: true});
-    const [p, pView] = useInView({delay: 1200, triggerOnce: true});
-    const [sub, subView] = useInView({delay: 400, triggerOnce: true});
+    const {lead, leadView, p, pView, sub, subView } = useWhenInView();
     const [cardOne, cardOneView] = useInView({triggerOnce: true})
     const [cardTwo, cardTwoView] = useInView({triggerOnce: true})
     const [cardThree, cardThreeView] = useInView({triggerOnce: true})
-
   return (
     <div>
         <div className='text-center mt-5 p-5'>
@@ -36,34 +34,28 @@ function HowItWorks({}: Props) {
                             <span className='flex items-center gap-3 text-blue font-semibold'><span className='bg-yellow inline-block rounded-full'><BsArrowRight /></span> Call Us</span>
                             <span className='flex items-center gap-3 text-blue font-semibold'><span className='bg-yellow inline-block rounded-full'><BsArrowRight /></span> Chat Us</span>
                         </div>
-
                 </div>
-
                 <div ref={cardTwo} className={`basis-10/12 lg:basis-3/12 p-6 border border-solid border-slate-900 rounded-2xl opacity-0 ${cardTwoView? "slide-top":""}`}>
                     <span className='bg-yellow p-4 rounded-full inline-block '> <img width={40} src='./images/Payment 1.svg' alt='icon'/></span>
                     <h3 className='font-bold text-lightBlue my-3'>Make Payment</h3>
                     <p className='text-sm'>Our shipping prices are vyer friendly and affordable. We currently accept payment through the following means:
                     </p>
-
                     <div className='flex flex-col gap-3 mt-5'>
                             <span className='flex items-center gap-3 text-blue font-semibold'><span className='bg-yellow inline-block rounded-full'><BsArrowRight /></span> Bank Transfer</span>
                             <span className='flex items-center gap-3 text-blue font-semibold'><span className='bg-yellow inline-block rounded-full'><BsArrowRight /></span> Bitcoin</span>
                         </div>
 
                 </div>
-
                 <div ref={cardThree} className={`basis-10/12 lg:basis-3/12 p-6 border border-solid border-slate-900 rounded-2xl opacity-0 ${cardThreeView? "slide-top":""}`}>
                     <span className='bg-yellow p-4 rounded-full inline-block '> <img width={40} src='./images/Track.svg' alt='icon'/></span>
                     <h3 className='font-bold text-lightBlue my-3'>Track Parcel</h3>
                     <p className='text-sm'>Once your parcel is shipped, a tracking code will be generated for you to monitor your parcel anytime. You can know the exact location your parcel is at any point in time.
                     </p>
-
                     <div className='flex flex-col gap-3 mt-5'>
                             <span className='flex items-center gap-3 text-blue font-semibold'><span className='bg-yellow inline-block rounded-full'><BsArrowRight /></span>Know Parcel current location</span>
                             <span className='flex items-center gap-3 text-blue font-semibold'><span className='bg-yellow inline-block rounded-full'><BsArrowRight /></span>Know Parcel Current Status</span>
                             <span className='flex items-center gap-3 text-blue font-semibold'><span className='bg-yellow inline-block rounded-full'><BsArrowRight /></span>Know Parcel Exact ETA</span>
                         </div>
-
                 </div>
             </div>
         </div>

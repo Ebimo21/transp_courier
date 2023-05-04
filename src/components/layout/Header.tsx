@@ -1,6 +1,6 @@
 import { Montserrat } from 'next/font/google'
 import Link from 'next/link'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 const montserrate = Montserrat({subsets: ["latin"]})
 
@@ -14,8 +14,9 @@ const Header = () => {
 						<div>
 							<Link 
 								href="/"
-								className="flex items-center py-4 px-2">
-									<img src="./imags/logo.png" alt="Logo" className="h-8 w-8 mr-2"/>
+								className="flex items-center gap-2 py-4 px-2">
+									<img src="https://img.icons8.com/ios/50/041C2F/in-transit--v1.png"/>
+									{/* <img src="./imags/logo.png" alt="Logo" className="h-8 w-8 mr-2"/> */}
 									<span className="font-bold text-blue text-2xl">Transp</span>
 							</Link>
 						</div>

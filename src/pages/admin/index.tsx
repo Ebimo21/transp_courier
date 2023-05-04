@@ -311,7 +311,7 @@ const roundToNearestWhole = (num:number) =>{
             </div>
           
 
-        {addNewParcel && <AddParcel show={addNewParcel} onClose={()=>setAddNewParcel(false)} />}
+        {addNewParcel && <AddParcel show={addNewParcel} reload={()=>setRefresh(prev=>!prev)} onClose={()=>setAddNewParcel(false)}  />}
 
         {editParcelModal && <EditParcel 
           handleParcelUpdate={handleParcelUpdate}

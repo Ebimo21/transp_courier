@@ -8,11 +8,12 @@ type dispatchType ={
 type Props = {
     show: Boolean,
     onClose: ()=>void,    
+    reload: ()=>void,    
 }
 
 
 
-const AddParcel = ({show, onClose}: Props) => {
+const AddParcel = ({show, onClose, reload}: Props) => {
   const [parcel, setParcel] = useState<newParcel>();
 
   const parcelAction =  {
@@ -80,8 +81,9 @@ const AddParcel = ({show, onClose}: Props) => {
 
     const handleNewParcel = async(e: any)=>{
         e.preventDefault()
-        // console.log(newParcel);
         await addNewParcel(newParcel);
+        reload()
+        // onClose();
     
       }
     

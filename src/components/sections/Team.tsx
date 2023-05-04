@@ -1,3 +1,4 @@
+import useWhenInView from '@/hooks/useWhenInView';
 import Link from 'next/link'
 import React from 'react'
 import { BsFacebook, BsInstagram, BsTwitter } from 'react-icons/bs';
@@ -6,14 +7,7 @@ import { useInView } from 'react-intersection-observer';
 type Props = {}
 
 const Team = (props: Props) => {
-
-    const [lead, leadView] = useInView({triggerOnce: true});
-    const [p, pView] = useInView({delay: 1200, triggerOnce: true});
-    const [sub, subView] = useInView({delay: 400, triggerOnce: true});
-    const [cardOne, cardOneView] = useInView({triggerOnce: true, delay: 400})
-    const [cardTwo, cardTwoView] = useInView({triggerOnce: true, delay: 600})
-    const [cardThree, cardThreeView] = useInView({triggerOnce: true, delay: 800})
-    const [cardFour, cardFourView] = useInView({triggerOnce: true, delay: 1000})
+    const { cardOne, cardOneView, cardTwo, cardTwoView, cardThree, cardThreeView, cardFour, cardFourView } = useWhenInView();
 
     type Team ={
         name: String,

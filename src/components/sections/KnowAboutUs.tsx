@@ -2,15 +2,13 @@ import React from 'react'
 import {AiOutlineArrowRight} from "react-icons/ai"
 import ArrowRight from '../iconify/ArrowRight'
 import { useInView } from 'react-intersection-observer'
+import useWhenInView from '@/hooks/useWhenInView'
 
 type Props = {}
 
 const KnowAboutUs = (props: Props) => {
-    const [lead, leadView] = useInView({triggerOnce: true});
-    const [p, pView] = useInView({delay: 1200, triggerOnce: true});
-    const [sub, subView] = useInView({delay: 400, triggerOnce: true});
-    const [img, imgView] = useInView({delay: 400, triggerOnce: true});
-    const [btn, btnView] = useInView({delay: 400, triggerOnce: true})
+    const {lead, leadView, p, pView, sub, subView, img, imgView, btn, btnView } = useWhenInView();
+
   return (
     <div className='py-14'>
         <div className='flex items-center justify-center flex-wrap gap-10 lg:gap-5 p-5'>

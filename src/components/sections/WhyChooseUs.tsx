@@ -1,3 +1,4 @@
+import useWhenInView from '@/hooks/useWhenInView';
 import React from 'react'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { BsArrowRight } from 'react-icons/bs';
@@ -6,15 +7,7 @@ import { useInView } from 'react-intersection-observer';
 type Props = {}
 
 const WhyChooseUs = (props: Props) => {
-    const [lead, leadView] = useInView({triggerOnce: true});
-    const [p, pView] = useInView({delay: 1200, triggerOnce: true});
-    const [sub, subView] = useInView({delay: 400, triggerOnce: true});
-    const [cardOne, cardOneView] = useInView({triggerOnce: true, delay: 400});
-    const [cardTwo, cardTwoView] = useInView({triggerOnce: true, delay: 600});
-    const [cardThree, cardThreeView] = useInView({triggerOnce: true, delay: 800});
-    const [cardFour, cardFourView] = useInView({triggerOnce: true, delay: 1000});
-    const [item, itemView] = useInView({triggerOnce: true});
-
+    const {lead, leadView, p, pView, sub, subView, cardOne, cardOneView, cardTwo, cardTwoView, cardThree, cardThreeView, cardFour, cardFourView, itemOne, itemOneView } = useWhenInView();
   return (
     <div className=''>
         <div className='flex flex-wrap gap-10 lg:gap-2 px-2 lg:px-10 py-10 justify-center items-center semibold max-w-[1250px] m-auto' >
@@ -57,7 +50,7 @@ const WhyChooseUs = (props: Props) => {
                     reducing waste and offsetting carbon emissions.
                 </p>
 
-                <div ref={item} className={`mt-5 flex text-sm  lg:text-xs flex-wrap gap-5 opacity-0 ${itemView? "slide-top":""}`}>
+                <div ref={itemOne} className={`mt-5 flex text-sm  lg:text-xs flex-wrap gap-5 opacity-0 ${itemOneView? "slide-top":""}`}>
                         <div className='flex flex-col gap-3'>
                             <span className='flex items-center gap-3 text-blue font-medium'>
                                 <span className='bg-yellow inline-block rounded-full'>

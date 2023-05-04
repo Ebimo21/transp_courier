@@ -1,13 +1,10 @@
+import useWhenInView from '@/hooks/useWhenInView';
 import Link from 'next/link'
-import React, {useEffect} from 'react';
-import { useInView } from 'react-intersection-observer';
+import React from 'react';
+import { useInView} from 'react-intersection-observer';
 
-type Props = {}
-
-const Landing = (props: Props) => {
-  const [lead, leadView] = useInView({triggerOnce: true});
-  const [p, pView] = useInView({delay: 1200, triggerOnce: true});
-  const [sub, subView] = useInView({delay: 400, triggerOnce: true});
+const Landing = () => {
+  const {lead, leadView, p, pView, sub, subView } = useWhenInView();
   const [btn, btnView] = useInView({delay: 800, triggerOnce: true})
   
   return (
@@ -26,12 +23,6 @@ const Landing = (props: Props) => {
               </div>
             </div>
             </div>
-
-            {/* <div className='h-40'>
-              
-
-            </div> */}
-
         </div>
   )
 }
