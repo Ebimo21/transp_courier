@@ -83,8 +83,7 @@ const AddParcel = ({show, onClose, reload}: Props) => {
         e.preventDefault()
         await addNewParcel(newParcel);
         reload()
-        // onClose();
-    
+        onClose();
       }
     
     if(!show) {return null}
