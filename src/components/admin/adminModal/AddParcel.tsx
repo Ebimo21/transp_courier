@@ -46,7 +46,6 @@ const AddParcel = ({show, onClose, reload}: Props) => {
     
       const reducer = (state:any, action:any) =>{
         const {type, payload} = action;
-        // console.log(action);
         switch(type){
           case parcelAction.RECIEVER_EMAIL:
             return {...state, reciever_email: payload};

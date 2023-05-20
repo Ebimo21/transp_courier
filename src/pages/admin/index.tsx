@@ -16,6 +16,8 @@ import { useAuthContext } from '@/context/authContext';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, {FormEvent, RefObject, useEffect, useReducer, useRef, useState} from 'react';
+import moment from 'moment';
+
 
 type Props = {};
 
@@ -56,10 +58,8 @@ const Index = (props: Props) => {
 }
 
 const handleCallbackUpdate = async(e: FormEvent) =>{
-  // console.log(parcelEdit);
   const response:notify = await updateParcelDetails(parcelId, parcelEdit);
 
-  // console.log(response);
    if(response.success){
        setSuccessNotification(prev=>true);
    }else{
@@ -91,7 +91,6 @@ const parcelAction =  {
 
 const reducer = (state:any, action:any) =>{
   const {type, payload} = action;
-  // console.log(state);
   switch(type){
     case parcelAction.RECIEVER_EMAIL:
       return {...state, reciever_email: payload};
@@ -164,7 +163,7 @@ const handleSelectRows = async (e:any) =>{
   const row = e.target.value;
   setRowsPerPage(row);
   const response = await getAllParcels(page, row);
-  setParcels(response.data.row)
+  setParcels(response?.data?.row)
 
 }
 
@@ -172,7 +171,7 @@ const handleGetNextPage = async() =>{
   setPage(page=>page+1)
   console.log(page);
   const response = await getAllParcels(page+1, rowsPerPage);
-  setParcels(response.data.row);
+  setParcels(response?.data?.row);
   console.log(roundToNearestWhole);
 }
 
@@ -181,7 +180,7 @@ const handleGetPreviousPage = async() =>{
   if(page>1){
     setPage(page=>page-1)
     const response = await getAllParcels(page-1, rowsPerPage);
-    setParcels(response.data.row);
+    setParcels(response?.data?.row);
   }
   console.log(page);
   console.log(roundToNearestWhole);
@@ -195,11 +194,16 @@ const roundToNearestWhole = (num:number) =>{
   useEffect(()=>{
     const getParcels = async () =>{
       const response = await getAllParcels(1);
-      setParcels(response.data.row);
-      setTotalPages(response.data.total)
+      setParcels(response?.data?.row);
+      setTotalPages(response?.data?.total)
     }
     getParcels();
   }, [refresh]);
+
+  const returnTime = (_t: string) =>{
+    const time = moment.utc(_t).utcOffset(-4);
+    return time.format();
+  }
 
 
   return (
@@ -254,7 +258,7 @@ const roundToNearestWhole = (num:number) =>{
                     <td className='p-3 w-20'>{item?.sender_name}</td>
                     <td className='p-3 w-20'>{item?.route}</td>
                     <td className='p-3 w-20'>{item?.description}</td>
-                    <td className='p-3 w-20'>{item?.delivery_date.slice(0,-8).replace(/[T]/, " ")}</td>
+                    <td >{returnTime(item?.delivery_date)?.slice(0, -9)?.replace(/[T]/, " ")}</td>
                     <td className='p-3 w-20 flex items-center gap-2'> 
                       <span className='cursor-pointer' 
                         onClick={(e)=>{setEditParcelModal(prev=> !prev); setParcelId(item?.Tracking_id ?? ""); console.log(parcelId);}} >

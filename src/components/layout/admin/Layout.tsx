@@ -9,7 +9,6 @@ type Props = {
     title:string
   }
 const Layout = ({children, title="Sample Title"}:Props) => {
-     //console.log("layout", title)
      const [mobileNavsidebar, setMobileNavsidebar] = useState(false);
      
 

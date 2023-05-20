@@ -1,6 +1,7 @@
 import Congratulations from '@/components/admin/adminModal/Congratulations'
 import Error from '@/components/admin/adminModal/Error'
 import { loginAdmin } from '@/config/apiCalls'
+import useHandleLogin from '@/hooks/useLogin'
 import { useRouter } from 'next/router'
 import React, {useState, useContext} from 'react'
 
@@ -8,35 +9,15 @@ import React, {useState, useContext} from 'react'
 type Props = {}
 
 const Login = (props: Props) => {
-    const router = useRouter();
 
-    const [successNotification, setSuccessNotification] = useState<Boolean>(false)
-    const [errorNotification, setErrorNotification] = useState<Boolean>(false)
-    const [notification, setNotification] = useState<notify>()
+  const {email, setEmail, setError, error, errorNotification, setErrorNotification, successNotification, setSuccessNotification, password, setPassword, handleLogin, notification} = useHandleLogin()
 
-    const [email, setEmail] = useState<string>("")
-    const [password, setPassword] = useState<string>("")
-
-    const handleLogin = async (e:any)=>{
-        e.preventDefault();
-        const response = await loginAdmin({email, password});
-        if(response.success){
-            setSuccessNotification(prev=>true);
-            setTimeout(()=>{
-              router.push('/admin')
-              
-            }, 3000)
-        }else{
-            setErrorNotification(prev=>true);
-        }
-        setNotification(response);
-    }
-    
   return (
     <div>
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-6">
   <div className="p-6 bg-white rounded-lg shadow-md">
     <h2 className="text-2xl font-bold mb-4">Login</h2>
+    <p className='text-red-400 text-xs'>{error !== null? error: ""}</p>
       <form onSubmit={handleLogin} className="w-full">
         <div className="form-control">
           <div>
@@ -47,14 +28,14 @@ const Login = (props: Props) => {
               <span>Email</span>
               <input 
                 onChange={(e)=>setEmail(e.target.value)} 
-                type="email"
+                type="text"
                 id="email" 
                 placeholder="info@site.com" 
                 className="w-full input input-bordered"
-                required />
+                 />
             </label>
           </div>
-
+ 
           <div>
             <label htmlFor='password' className="label">
               <span className="label-text">Your Password</span>

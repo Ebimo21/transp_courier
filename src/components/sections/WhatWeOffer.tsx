@@ -4,7 +4,6 @@ import { Warehouse } from '../iconify/Warehouse'
 import { OceanFrieght } from '../iconify/OceanFriegth'
 import { AirFreight } from '../iconify/AirFreight'
 import { RoadFreight } from '../iconify/RoadFreight'
-import { useInView } from 'react-intersection-observer'
 import CountUp from 'react-countup'
 import useWhenInView from '@/hooks/useWhenInView'
 

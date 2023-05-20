@@ -1,5 +1,6 @@
 import React, { Dispatch, FormEvent, RefObject, useEffect, useState } from 'react';
 import {getParcel} from "../../../config/apiCalls"
+import moment from "moment";
 
 type dispatchType ={
     type: string,
@@ -21,6 +22,11 @@ type Props = {
 
 const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, formElement, handleCallbackUpdate, show, onClose}: Props) => {
   const [parcel, setParcel] = useState<newParcel>()
+
+  const returnTime = (_t: string) =>{
+    const time = moment.utc(_t).utcOffset(-4);
+    return time.toISOString(true);
+  }
     
     useEffect(()=>{
         const getParcelDetails = async() =>{
@@ -271,7 +277,7 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 id="delivery_date" 
                 name="delivery_date" 
                 required
-                defaultValue={parcel?.delivery_date.slice(0, -5).replace(/[T]/, " ")}
+                defaultValue={returnTime(parcel? parcel?.delivery_date : "")?.toString()?.slice(0, -6)?.replace(/[T]/, " ")}
                 />
             </div>
 
@@ -303,7 +309,7 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 required/>
             </div> */}
               </div>
-              <button defaultValue={"submit"}>Submit</button>
+              <button  className='bg-blue text-white px-3 py-2 mt-4' defaultValue={"submit"}>Submit</button>
         </form>
         </div>
     </div>

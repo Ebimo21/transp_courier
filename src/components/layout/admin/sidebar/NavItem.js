@@ -13,7 +13,6 @@ const NavItem = ({sidebarStatus, menuTitle, subMenu, subMenuArray, hrefLink, chi
             setSubMenuToggleStatus(false)
         }
     },[sidebarStatus])  
-    //console.log('submenu', sidebarStatus)
     return (
         <>  
             <Link href={hrefLink}>

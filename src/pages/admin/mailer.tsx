@@ -44,7 +44,6 @@ const Mailer = (props: Props) => {
 
 
     React.useEffect(() => {
-        console.log(isUserAuthenticated());
         !isUserAuthenticated()
         ? router.push("/admin/login"): ""
       }, []);

@@ -8,8 +8,6 @@ type loginDetails = {
     password: string,
 }
 
-
-
 const data = [
     {
       "id": 9,
