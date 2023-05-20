@@ -16,7 +16,7 @@ const about = (props: Props) => {
         <main>
             <div id='about'
             className=' w-screen text-white p-6' >
-            <div className='flex flex-col items-center justify-center h-[30vh] lg:h-[60vh] '>
+            <div className='flex flex-col items-center justify-center h-[60vh] xs:h-[30vh] lg:h-[60vh] '>
                     <span className='text-yellow font-bold'>Who We Are</span>
                     <h1 className=' text-6xl font-bold mb-5'>About Us</h1>
                     < p className='lg:w-5/12 text-center'>We have been pioneering the industry in Europe for over a decade and delivering

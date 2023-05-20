@@ -10,8 +10,8 @@ const Landing = () => {
   return (
         <div 
           id='landing'
-          className='h-[70vh] w-screen text-white py-6 flex sm:justify-start   ' >
-            <div className='p-6 sm:p-0 sm:w-[1100px] m-auto'>
+          className='h-screen xs:h-[70vh] w-full text-white py-6 flex sm:justify-start   ' >
+            <div className='p-6 lg:p-0 sm:w-[1100px] m-auto'>
             <div className='flex items-center justify-left lg:pl-1477  '>
               <div className='md:basis-7/12 '>
                 <span ref={sub} className={`text-xs font-medium block opacity-0 ${subView? "slide-top":""}`}>Logistics & Transportation</span>

@@ -20,7 +20,7 @@ const Header = () => {
 									<span className="font-bold text-blue text-2xl">Transp</span>
 							</Link>
 						</div>
-						<div className="hidden md:flex items-center space-x-1">
+						<div className="hidden lg:flex items-center space-x-1">
 							<Link href="/" className="py-4 px-2 text-blue hover:text-lightBlue transition duration-300 border-blue font-bold ">Home</Link>
 							<Link href="/about" className="py-4 px-2 text-blue hover:text-lightBlue transition duration-300 border-blue font-bold ">About Us</Link>
 							<Link href="/services" className="py-4 px-2 text-blue  hover:text-lightBlue transition duration-300 border-blue font-bold ">Services</Link>
@@ -28,11 +28,11 @@ const Header = () => {
 						</div>
 					</div>
 
-					<div className="hidden md:flex items-center space-x-3 ">
+					<div className="hidden lg:flex items-center space-x-3 ">
 						<Link href="#" className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue hover:text-white transition duration-300">English </Link>
 						<Link href="/track" className="py-2 px-2 w-40 text-center font-medium text-blue rounded bg-yellow transition duration-300">Track Parcel</Link>
 					</div>
-					<div className="md:hidden flex items-center">
+					<div className="lg:hidden flex items-center">
 						<button
               				onClick={(e)=>setShow(prev=>!prev)} className="outline-none mobile-menu-button">
 							<svg className=" w-6 h-6 text-gray-500 hover:text-blue "

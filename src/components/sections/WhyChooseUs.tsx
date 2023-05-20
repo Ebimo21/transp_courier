@@ -10,7 +10,7 @@ const WhyChooseUs = (props: Props) => {
     const {lead, leadView, p, pView, sub, subView, cardOne, cardOneView, cardTwo, cardTwoView, cardThree, cardThreeView, cardFour, cardFourView, itemOne, itemOneView } = useWhenInView();
   return (
     <div className=''>
-        <div className='flex flex-wrap gap-10 lg:gap-2 px-2 lg:px-10 py-10 justify-center items-center semibold max-w-[1250px] m-auto' >
+        <div className='flex flex-wrap gap-10 lg:gap-2 lg:px-10 py-10 justify-center items-center semibold max-w-[1250px] m-auto' >
             <div className='basis-full grow flex flex-wrap lg:basis-5/12 text-center gap-4 justify-center'>
                 <div ref={cardOne} className={`basis-5/12 rounded-lg sm:max-w-[310px] lg:max-w-[240px] leading-3 py-5 px-5 lg:p-5 sm:p-5  shadow-card--features opacity-0 ${cardOneView? "slide-top":""}`}>
                     <img width={80} className='block m-auto' src='./images/Shipping.png'  />
@@ -82,8 +82,8 @@ const WhyChooseUs = (props: Props) => {
                         </div>
 
                     </div>
-                        <div className='mt-10 flex gap-10 items-center'>
-                            <button className='bg-blue px-4 w-40 py-2 text-white rounded-3xl mt-'>Contact Us</button>
+                        <div className='mt-10 flex justify-between items-center'>
+                            <button className='basis-5/12 bg-blue px-4 w-40 py-2 text-white rounded-3xl '>Contact Us</button>
 
                             <button className='flex items-center gap-3 font-semibold'>Learn More <BsArrowRight color='#034460' /></button>
 

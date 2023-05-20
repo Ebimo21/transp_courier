@@ -100,7 +100,7 @@ const WhatWeOffer = (props: Props) => {
                 forwarding services, for easing your supply chain needs.</p>
         </div>
 
-        <div className='bg-blue rounded-[30px] h-[2050px] md:h-[450px] mt-10 md:mt-32 p-2 pt-10 '>
+        <div className='bg-blue rounded-[30px] h-[2200px] xs:h-[2050px] md:h-[450px] mt-10 md:mt-32 p-2 pt-10 '>
             <div className='flex flex-wrap justify-center mx-5 md:-translate-y-32 gap-5 '>
                 {items.map((item, index)=>{
                     return(
@@ -127,7 +127,7 @@ const WhatWeOffer = (props: Props) => {
 
             </div>
 
-            <div className='flex flex-wrap lg:flex-nowrap gap-20 md:gap-10 mt-10 md:-translate-y-32 text-md text-center'>
+            <div className='flex flex-wrap lg:flex-nowrap gap-20 xs:gap-14 md:gap-10 mt-10 md:-translate-y-32 text-md text-center'>
             {cards.map((item, index)=>{
                 return (
                     <div ref={item?.card} key={index} className={`basis-full md:basis-3/12 text-white opacity-0 ${item.ref? "slide-top":""}`}>

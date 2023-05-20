@@ -33,8 +33,8 @@ const GetInTouch = ({ImageId}: Props) => {
                             <span className='flex items-center gap-6 text-blue font-medium'><span className='bg-yellow inline-block rounded-full'><BsArrowRight /></span> 24/7 Support System available</span>
                         </div>
                     </div>
-                    <div className='mt-10 flex gap-10 items-center'>
-                        <button className='bg-blue px-4 w-40 py-2 text-white font-semibold rounded-3xl '>Contact Us</button>
+                    <div className='mt-10 flex justify-between items-center'>
+                        <button className='basis-5/12 bg-blue px-4 w-40 py-2 text-white font-semibold rounded-3xl '>Contact Us</button>
 
                         <button className='flex items-center gap-3 font-semibold'>Learn More <BsArrowRight color='#034460' /></button>
                     </div>

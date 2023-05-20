@@ -4,9 +4,9 @@ type Props = {}
 
 function SectionThree({}: Props) {
   return (
-    <div className='px-5 mt-4 '>
+    <div className='px-5 py-5 '>
       <div className=' flex flex-wrap gap-20 justify-center items-center'>
-        <div className='md:basis-4/12 '>
+        <div className='md:basis-5/12 '>
             <span className='bg-yellow font-semibold p-1 w-20 text-center inline-block'>History</span>
           <h3 className='text-2xl text-blue font-bold my-4'>Globally Conected by Large Network.</h3>
           <p className='font-thin'>Logistic Transp was founded in 2005 by a group of transportation 
@@ -15,11 +15,11 @@ function SectionThree({}: Props) {
             in over 30 countries around the world.</p>
 
         </div>
-        <div>
+        <div className='md:basis-5/12'>
           <img 
             src='./images/History.jpg' 
             alt=""
-            className='md:max-w-[550px] block m-auto' />
+            className='w-full block m-auto' />
         </div>
       </div>
     </div>

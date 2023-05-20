@@ -18,6 +18,9 @@ module.exports = {
         "lightBlue": "#041C2F",
         "blue": "#034460",
 
+      },
+      screens: {
+        "xs": "350px"
       }
     },
   },
