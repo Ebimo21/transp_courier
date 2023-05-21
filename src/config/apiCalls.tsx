@@ -65,7 +65,7 @@ export const deleteParcelDetails = async (tracking_id:string|undefined|null)=>{
     }
 }
 
-export const sendMail = async (email:string, subject:string, body:string, user:string, title:string)=>{
+export const sendMail = async (email:string, subject:string, body:string, user:string)=>{
     try {
         const response = await axios.post(
             `${host}send/mail`,

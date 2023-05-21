@@ -26,7 +26,7 @@ type notify ={
     success: Boolean,
     data?: {
       data?: {
-        msg: string
+        message: string
       }[] | undefined,
       // data?: any[]|undefined,
     }

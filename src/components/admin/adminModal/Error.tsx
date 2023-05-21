@@ -5,7 +5,7 @@ import errorImage from "../assets/error.png";
 type Props ={
   lead: string |undefined,
   sub:{
-    msg: string,
+    message: string,
   }[] | undefined 
   show: Boolean,
   onClose: ()=>void,
@@ -24,7 +24,7 @@ function Error({lead, sub, show, onClose}: Props) {
                     <img width={200} className="block mt-10 mx-auto"  src={"../../../images/error.png"} alt="" />
                 </div>
                 <p className='font-bold mt-5'>{lead}</p>
-                <p className='text-xs text-[#868585] font-thin mt-2'>{!sub ?"" : sub?.length >0 ?sub?.map((item, index)=>{return <span key={index}>{item?.msg + ", "}</span> }): ""}</p>
+                <p className='text-xs text-[#868585] font-thin mt-2'>{!sub ?"" : sub?.length >0 ?sub?.map((item, index)=>{return <span key={index}>{item?.message + ", "}</span> }): ""}</p>
 
                 <div className=' flex flex-col items-end mt-5'>
                     <button onClick={onClose} className='p-2 bg-altPurple text-white text-base w-28 h-30 rounded-md flex justify-center items-center gap-2 '>Go back <MdKeyboardArrowRight size="20px" /> </button>

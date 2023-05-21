@@ -7,6 +7,7 @@ type dispatchType ={
     payload: string,
 }
 type Props = {
+    error: string | null,
     handleParcelUpdate: (e: FormEvent, func: (e:FormEvent)=>void)=>void,
     dispatch: ({type, payload}: dispatchType)=> void,
     parcelAction: parcelAction,
@@ -16,11 +17,12 @@ type Props = {
     show: Boolean,
     onClose: ()=>void,
     state: Object,
+    loading: boolean,
 }
 
 
 
-const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, formElement, handleCallbackUpdate, show, onClose}: Props) => {
+const EditParcel = ({state, loading, handleParcelUpdate, dispatch, error, parcelAction, id, formElement, handleCallbackUpdate, show, onClose}: Props) => {
   const [parcel, setParcel] = useState<newParcel>()
 
   const returnTime = (_t: string) =>{
@@ -296,20 +298,11 @@ const EditParcel = ({state, handleParcelUpdate, dispatch, parcelAction, id, form
                 defaultValue={parcel?.current_location}
                 />
             </div>
-            {/* <div>
-              <label 
-                className="block mb-2 font-bold" 
-                htmlFor="route">Delivery Date</label>
-              <input 
-                onChange={(e)=>dispatch({type: parcelAction.RECIEVER_EMAIL, payload: e.target.value})} 
-                className="w-full px-3 py-2 border border-gray-400 rounded" 
-                type="datetime-local" 
-                id="delivery_date" 
-                name="delivery_date" 
-                required/>
-            </div> */}
+          
+            <p className='text-red-400 text-base'>{error !== null? error: ""}</p>
+
               </div>
-              <button  className='bg-blue text-white px-3 py-2 mt-4' defaultValue={"submit"}>Submit</button>
+              <button  className={`bg-blue text-white px-3 py-2 mt-4 btn ${loading? "loading": ""}`} defaultValue={"submit"}>Submit</button>
         </form>
         </div>
     </div>

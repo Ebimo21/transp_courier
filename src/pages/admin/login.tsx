@@ -10,7 +10,7 @@ type Props = {}
 
 const Login = (props: Props) => {
 
-  const {email, setEmail, setError, error, errorNotification, setErrorNotification, successNotification, setSuccessNotification, password, setPassword, handleLogin, notification} = useHandleLogin()
+  const {email, loginLoading:loading, setEmail, setError, error, errorNotification, setErrorNotification, successNotification, setSuccessNotification, password, setPassword, handleLogin, notification} = useHandleLogin()
 
   return (
     <div>
@@ -54,7 +54,7 @@ const Login = (props: Props) => {
           </div>
         </div>
         <div className='my-4'>
-          <button className="btn glass">Login</button>
+          <button className={`btn ${loading? 'loading': ''}`}>Login</button>
         </div>
       </form>
     {/* <form 

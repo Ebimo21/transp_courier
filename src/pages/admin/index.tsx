@@ -50,26 +50,48 @@ const Index = (props: Props) => {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [error, setError ] = useState<string | null>(null);
+  const [editLoading, setEditLoading ] = useState<boolean>(false);
+
 
 
   const handleParcelUpdate = (e: FormEvent, callback: (e:FormEvent)=>void)=>{
     e.preventDefault();
     callback(e);
-}
+  }
+  
+  const handleCallbackUpdate = async(e: FormEvent) =>{
+  setEditLoading(true);
 
-const handleCallbackUpdate = async(e: FormEvent) =>{
-  const response:notify = await updateParcelDetails(parcelId, parcelEdit);
+  if (parcelEdit?.description == ""){
+    setError("Add Description");
+    setTimeout(() => {
+      setError(null)
+    }, 2000)
 
-   if(response.success){
-       setSuccessNotification(prev=>true);
-   }else{
-       setErrorNotification(prev=>true);
-   }
-   setNotification(response);
-   setEditParcelModal(false);
-   dispatch({type: parcelAction.CLEAR});
+  }
+  else {
 
-   setRefresh(prev=>!prev)
+    const response:notify = await updateParcelDetails(parcelId, parcelEdit);
+  
+     if(response.success){
+         setSuccessNotification(prev=>true);
+         setEditParcelModal(false);
+         console.log(response);
+         setNotification(response);
+         dispatch({type: parcelAction.CLEAR});
+         setRefresh(prev=>!prev)
+         setEditLoading(false)
+        }else{
+          setErrorNotification(prev=>true);
+          setEditParcelModal(false);
+          setNotification(response);
+          dispatch({type: parcelAction.CLEAR});
+          setRefresh(prev=>!prev)
+          setEditLoading(false)
+     }
+  
+  }
 
 } 
 
@@ -204,6 +226,14 @@ const roundToNearestWhole = (num:number) =>{
     const time = moment.utc(_t).utcOffset(-4);
     return time.format();
   }
+  type notify ={
+    message?: string,
+    success: Boolean,
+    data?: {
+      message: string,
+      data?: any[]|undefined,
+    }
+  }
 
 
   return (
@@ -317,7 +347,9 @@ const roundToNearestWhole = (num:number) =>{
 
         {addNewParcel && <AddParcel show={addNewParcel} reload={()=>setRefresh(prev=>!prev)} onClose={()=>setAddNewParcel(false)}  />}
 
-        {editParcelModal && <EditParcel 
+        {editParcelModal && <EditParcel
+          error={error} 
+          loading={editLoading}
           handleParcelUpdate={handleParcelUpdate}
           handleCallbackUpdate={handleCallbackUpdate}
           dispatch={dispatch}
@@ -333,7 +365,7 @@ const roundToNearestWhole = (num:number) =>{
           {deleteModal && <ConfirmDelete show={deleteModal} onClose={()=>setDeleteModal(false)} lead='Confirm Delete' deleted={handleDelete} />}
 
       <Congratulations
-                  lead={notification?.message} 
+                  lead={notification?.data?.message} 
                   show={successNotification} 
                   sub={""}
                   onClose={()=>setSuccessNotification(false)}

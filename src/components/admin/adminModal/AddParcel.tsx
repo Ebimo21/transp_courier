@@ -15,6 +15,7 @@ type Props = {
 
 const AddParcel = ({show, onClose, reload}: Props) => {
   const [parcel, setParcel] = useState<newParcel>();
+  const [error, setError ] = useState<string | null>(null);
 
   const parcelAction =  {
     RECIEVER_EMAIL: "reciever_email",
@@ -80,9 +81,23 @@ const AddParcel = ({show, onClose, reload}: Props) => {
 
     const handleNewParcel = async(e: any)=>{
         e.preventDefault()
-        await addNewParcel(newParcel);
-        reload()
-        onClose();
+        if(newParcel?.vehicle_type == "Select Vehicle Type"){
+          setError("Select Vehicle Type");
+          setTimeout(() => {
+            setError(null)
+          }, 2000)
+        } else if (newParcel?.description == ""){
+          setError("Add Description");
+          setTimeout(() => {
+            setError(null)
+          }, 2000)
+
+        }
+        else{
+          await addNewParcel(newParcel);
+          reload()
+          onClose();
+        }
       }
     
     if(!show) {return null}
@@ -145,9 +160,11 @@ const AddParcel = ({show, onClose, reload}: Props) => {
                   onChange={(e)=>dispatch({type: parcelAction.VEHICLE_TYPE, payload: e.target.options[e.target.selectedIndex].value})} 
                   className="w-full px-3 py-2 border border-gray-400 rounded"
                   required>
+
+                  <option>Select Vehicle Type</option>
                   <option>Air</option>
                   <option>Ship</option>
-                  <option selected>Bus</option>
+                  <option>Bus</option>
                 </select>
               {/* <input 
                 className="w-full px-3 py-2 border border-gray-400 rounded" type="text" id="vehicle_type" name="vehicle_type" placeholder="Enter Vehicle Type"/> */}
@@ -259,6 +276,8 @@ const AddParcel = ({show, onClose, reload}: Props) => {
                 placeholder="Enter Parcel Location"
                 required/>
             </div>
+            <p className='text-red-400 text-base'>{error !== null? error: ""}</p>
+
               </div>
               <button className='bg-blue text-white px-3 py-2 mt-4'>Submit</button>
         </form>

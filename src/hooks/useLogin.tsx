@@ -8,6 +8,7 @@ const useHandleLogin = () => {
     const router = useRouter();
 
     const [email, setEmail] = useState<string>("");
+    const [loginLoading, setLoginLoading] = useState<boolean>(false);
     const [password, setPassword] = useState<string>("");
     const [error, setError ] = useState<string | null>(null);
     const [successNotification, setSuccessNotification] = useState<Boolean>(false)
@@ -15,8 +16,8 @@ const useHandleLogin = () => {
     const [notification, setNotification] = useState<notify>()
 
     const handleLogin = async (e:any)=>{
-    
         e.preventDefault();
+        setLoginLoading(true);
         
         let regRes
           if(regRes = !emailRegex.test(email)){
@@ -40,11 +41,13 @@ const useHandleLogin = () => {
             const response = await loginAdmin({email, password});
             if(response.success){
                 setSuccessNotification(prev=>true);
+                setLoginLoading(false);
                 setTimeout(()=>{
                   router.push('/admin')
                   
                 }, 3000)
-            }else{
+              }else{
+                setLoginLoading(false);
                 setErrorNotification(prev=>true);
             }
             setNotification(response);
@@ -52,7 +55,7 @@ const useHandleLogin = () => {
           }
     
         }
-        return { handleLogin, notification, setNotification, email, setEmail, password, setPassword, error, setError, successNotification, setSuccessNotification, errorNotification, setErrorNotification}
+        return { handleLogin, notification, loginLoading, setLoginLoading, setNotification, email, setEmail, password, setPassword, error, setError, successNotification, setSuccessNotification, errorNotification, setErrorNotification}
 }
 
   export default  useHandleLogin

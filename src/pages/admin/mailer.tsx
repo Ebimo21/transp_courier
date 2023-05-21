@@ -26,15 +26,19 @@ const Mailer = (props: Props) => {
     const [subject, setSubject] = useState<string>("");
     const [username, setUsername] = useState<string>("");
     const [message, setMessage] = useState<string>("");
-    const [title, setTitle] = useState<string>("");
+
+    const [sendMailLoading, setSendMailLoading] = useState<boolean>(false);
 
     const handleSendMail = async(e:any) =>{
         e.preventDefault();
-        const response = await sendMail(sendTO, subject, message, username, title);
+        setSendMailLoading(true);
+        const response = await sendMail(sendTO, subject, message, username);
         setNotification(response);
         if(response.success){
+            setSendMailLoading(false);
             setSuccessNotification(prev=>true);
         }else{
+            setSendMailLoading(false);
             setErrorNotification(prev=>true);
         }
     }
@@ -84,19 +88,6 @@ const Mailer = (props: Props) => {
                     <div>
                         <label 
                             className="block mb-1" 
-                            htmlFor="title">Title</label>
-                        <input 
-                            onChange={(e)=>setTitle(e.target.value)}
-                            className="w-full p-3 outline-none  shadow rounded" 
-                            type="text" 
-                            id="title" 
-                            name="title" 
-                            placeholder="Enter Email Title"
-                            required/>
-                    </div>
-                    <div>
-                        <label 
-                            className="block mb-1" 
                             htmlFor="username">User Name</label>
                         <input 
                             onChange={(e)=>setUsername(e.target.value)}
@@ -115,7 +106,7 @@ const Mailer = (props: Props) => {
                         <QuillNoSSRWrapper className='w-full outline-none  shadow rounded overflow-auto max-h-80' theme="snow" modules={modules} formats={formats} value={message} onChange={setMessage}/>
                     </div>
                 </div>
-                <button className='bg-blue text-white p-3 mt-4 rounded font-bold '>Submit</button>
+                <button className={`btn bg-blue text-white p-3 mt-4 rounded font-bold ${sendMailLoading? "loading": ""}`}>Submit</button>
             </form>
         </div>
 
