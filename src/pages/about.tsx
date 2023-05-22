@@ -6,6 +6,7 @@ import SectionOne from '@/components/sections/SectionOne'
 import SectionThree from '@/components/sections/SectionThree'
 import SectionTwo from '@/components/sections/SectionTwo'
 import Team from '@/components/sections/Team'
+import Head from 'next/head'
 import React from 'react'
 
 type Props = {}
@@ -13,6 +14,9 @@ type Props = {}
 const about = (props: Props) => {
   return (
     <Layout>
+      <Head>
+        <title>About | Ultra Express</title>
+      </Head>
         <main>
             <div id='about'
             className=' w-screen text-white p-6' >

@@ -14,7 +14,7 @@ const Footer = (props: Props) => {
   return (
     <div className={`${montserrate.className} bg-blue p-5 pt-20 text-white flex flex-wrap justify-center gap-10`}>
             <div className='basis-full lg:basis-3/12  font-thin'>
-                <h3 className='font-extrabold text-3xl'>Transp</h3>
+                <h3 className='font-extrabold text-3xl'>Ultra Express</h3>
                 <p className=' mt-3 text-sm lg:text-xs'>We fuse our global network with our depth of expertise in air freight, ocean freight, 
                     railway transportation, trucking, and multimode transportation, also we are providing sourcing,
                     warehousing, E-commerce fulfilment, and value added service to our customers including kitting, 
