@@ -1,6 +1,7 @@
 import { Montserrat } from 'next/font/google'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { Mail } from '../iconify/Mail'
 
 const montserrate = Montserrat({subsets: ["latin"]})
 
@@ -17,14 +18,14 @@ const Header = () => {
 								className="flex items-center gap-2 py-4 px-2">
 									<img src="https://img.icons8.com/ios/50/041C2F/in-transit--v1.png"/>
 									{/* <img src="./imags/logo.png" alt="Logo" className="h-8 w-8 mr-2"/> */}
-									<span className="font-bold text-blue text-2xl">Transp</span>
+									<span className="font-bold text-blue text-2xl">Ultra Express</span>
 							</Link>
 						</div>
 						<div className="hidden lg:flex items-center space-x-1">
 							<Link href="/" className="py-4 px-2 text-blue hover:text-lightBlue transition duration-300 border-blue font-bold ">Home</Link>
 							<Link href="/about" className="py-4 px-2 text-blue hover:text-lightBlue transition duration-300 border-blue font-bold ">About Us</Link>
 							<Link href="/services" className="py-4 px-2 text-blue  hover:text-lightBlue transition duration-300 border-blue font-bold ">Services</Link>
-							<Link href="#" className="py-4 px-2 text-blue  hover:text-lightBlue transition duration-300 border-blue font-bold ">Contact</Link>
+							<Link href="mail:support@ultraexpress.org" className="flex items-center gap-2 py-4 px-2 text-blue  hover:text-lightBlue transition duration-300 border-blue font-bold ">Contact <Mail width={20} height={20} fill='#034460'/></Link>
 						</div>
 					</div>
 
@@ -55,7 +56,7 @@ const Header = () => {
 					<li><Link href="/" className="block px-2 py-4 hover:bg-lightBlue hover:text-white transition duration-300 border-blue font-semibold ">Home</Link></li>
 					<li><Link href="/about" className="block px-2 py-4 hover:bg-lightBlue text-blue hover:text-white transition duration-300 border-blue font-semibold ">About Us</Link></li>
 					<li><Link href="/services" className="block px-2 py-4 hover:bg-lightBlue text-blue  hover:text-white transition duration-300 border-blue font-semibold ">Services</Link></li>
-					<li><Link href="#" className="block px-2 py-4 hover:bg-lightBlue  text-blue  hover:text-white transition duration-300 border-blue font-semibold ">Contact</Link></li>
+					<li><Link href="mail:support@ultraexpress.org" className="flex items-center gap-2 block px-2 py-4 hover:bg-lightBlue  text-blue  hover:text-white transition duration-300 border-blue font-semibold ">Contact <Mail width={20} height={20} fill='#034460'/></Link></li>
 					<li><Link href="/track" className="inline-block py-2 px-5 font-medium text-blue rounded bg-yellow transition duration-300 mt-5">Track Parcel</Link></li>
 				</ul>
 			</div>

@@ -41,10 +41,8 @@ export const getParcel = async(id:string)=>{
                 }
             }
             )
-            console.log(response);
         return {success: true, data: response.data}
     }catch(err: any){
-        console.log(err.message)
         return {success: false, message: err.message}
     }
 
