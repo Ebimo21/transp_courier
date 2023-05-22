@@ -25,7 +25,7 @@ const Header = () => {
 							<Link href="/" className="py-4 px-2 text-blue hover:text-lightBlue transition duration-300 border-blue font-bold ">Home</Link>
 							<Link href="/about" className="py-4 px-2 text-blue hover:text-lightBlue transition duration-300 border-blue font-bold ">About Us</Link>
 							<Link href="/services" className="py-4 px-2 text-blue  hover:text-lightBlue transition duration-300 border-blue font-bold ">Services</Link>
-							<Link href="mail:support@ultraexpress.org" className="lex items-center gap-2 py-4 px-2 text-blue  hover:text-lightBlue transition duration-300 border-blue font-bold ">Contact <Mail width={20} height={20} fill='#034460'/></Link>
+							<Link href="mail:support@ultraexpress.org" className="flex items-center gap-2 py-4 px-2 text-blue  hover:text-lightBlue transition duration-300 border-blue font-bold ">Contact <Mail width={20} height={20} fill='#034460'/></Link>
 						</div>
 					</div>
 

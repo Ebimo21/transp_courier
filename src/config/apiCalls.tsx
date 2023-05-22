@@ -1,7 +1,6 @@
 import axios from "axios";
 const jscookie = require("jscookie");
-const host = "https://node.tradefactory.net/";
-// const host = "https://api.ultraexpress.org/";
+const host = "https://api.ultraexpress.org/";
 // const host = "http://localhost:3001/";
 
 type loginDetails = {
@@ -41,10 +40,8 @@ export const getParcel = async(id:string)=>{
                 }
             }
             )
-            console.log(response);
         return {success: true, data: response.data}
     }catch(err: any){
-        console.log(err.message)
         return {success: false, message: err.message}
     }
 

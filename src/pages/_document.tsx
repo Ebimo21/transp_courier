@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>Ultra Express</title>
         <meta name='description' content="Ultra Express Courier Website"/>      
         <meta property='og:title' content='Ultra Express ' />
         <meta property="og:type" content="website" />
