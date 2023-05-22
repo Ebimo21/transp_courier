@@ -1,6 +1,6 @@
 import axios from "axios";
 const jscookie = require("jscookie");
-const host = "https://api.ultraexpress.org/";
+const host = "https://node.tradefactory.net/";
 // const host = "http://localhost:3001/";
 
 type loginDetails = {
