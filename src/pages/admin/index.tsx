@@ -101,7 +101,7 @@ const parcelAction =  {
   VEHICLE_TYPE: "vehicle_type",
   DESTINATION: "destination",
   RECIEVER_ADDRESS: "reciever_address",
-  RECIEVER_PHONE: "reiever_phone",
+  RECIEVER_PHONE: "reciever_phone",
   DESCRIPTION: "description",
   ROUTE: "route",
   SENDER_NAME: "sender_name",
