@@ -22,7 +22,7 @@ const KnowAboutUs = (props: Props) => {
             <div className='basis-full lg:basis-5/12'>
                 <span ref={sub} className={`text-base font-semibold block opacity-0 ${subView? "slide-top":""}`}>Know About Us</span>
                 <h3 ref={lead} className={`text-lightBlue font-bold text-2xl md:text-4xl my-4 opacity-0 ${leadView? "slide-top":""}`}>We find delight in providing professional freight forwarding services for easing your 
-                    supply chain needs.
+                    supply chain neeeded.
                 </h3>
                 <p ref={p} className={`text- font-light opacity-0 ${pView? "slide-top":""}`}>We aim to contribute well to your company by brewing eǖ ective supply chain management 
                     strategies. Our professional resources is dedicated to ensure that there is constant 
